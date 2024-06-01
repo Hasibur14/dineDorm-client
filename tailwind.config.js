@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         title: "Lora, serif",
         heading: "Quattrocento Sans, sans-serif",
+        subHeading: "Sacramento , cursive",
       },
       colors: {
         neutral: "#EEEEEE",
