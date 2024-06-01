@@ -47,8 +47,8 @@ const Navbar = () => {
                 <div className={`lg:flex list-none text-white font-medium ${navbarMobile ? 'responsive' : 'hidden'} lg:items-center lg:space-x-6 `}>
                     <NavLink to='/' className={navLinkStyles}><li>Home</li></NavLink>
                     <NavLink to='/meals' className={navLinkStyles}><li>Meals</li></NavLink>
-                    <NavLink to='/services' className={navLinkStyles}><li>Upcoming Meals</li></NavLink>
-                    <NavLink to='/team' className={navLinkStyles}><li>Join Us</li></NavLink>
+                    <NavLink to='/upcomingMeals' className={navLinkStyles}><li>Upcoming Meals</li></NavLink>
+                    <NavLink to='/joinUs' className={navLinkStyles}><li>Join Us</li></NavLink>
                     <NavLink to='/contact' className={navLinkStyles}><li>Contact</li></NavLink>
                 </div>
 

@@ -28,15 +28,15 @@ const MealCategory = () => {
                     Heading='Menu Of The Day' >
                 </SectionTitle>
             </div>
-            <div className='py-16 w-[600px] mx-auto text-lg text-secondary '>
+            <div className='py-16 w-[500px] mx-auto text-lg text-secondary '>
                 <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className='font-semibold cursor-pointer' >
-                    <TabList>
+                    <TabList >
                         <Tab>ALL MENUS</Tab>
                         <Tab>BREAKFAST</Tab>
                         <Tab>LUNCH</Tab>
                         <Tab>DINNER</Tab>
                     </TabList>
-
+                    {/* MyTabs */}
                     <TabPanel>
                         all menu
                     </TabPanel>

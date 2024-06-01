@@ -1,0 +1,81 @@
+.signIn-bg{
+    background-image: url('../../../assets/loginImg.jpg');
+    background-color: #25252517;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+    background-attachment: fixed;
+}
+.signIn-bg span{
+color: wheat;
+}
+/* default input style */
+.input-style {
+    background-color: transparent;
+    border: 2px solid rgba(150, 149, 149, 0.719);
+    transition: background-color 0.3s ease, border 0.3s ease;
+    color: white;
+    border-radius: 4px;
+  }
+  .border-none{
+    border: none !important;
+  }
+  /* when not focus on input */
+  .input-style:not(:focus):not(:placeholder-shown) {
+    border: 2px solid #b1afaf;
+  }
+  /* when focus on input style */
+  .input-style:focus {
+    background-color: #ffffff28;  
+  }
+
+
+/* button */
+
+.button {
+    background-color: rgb(47, 112, 191);
+    cursor: pointer;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    vertical-align: middle;
+    z-index: 1;
+    color: white;
+  }
+  
+  .button:hover {
+    color: #fff;
+
+  }
+  
+  .button:before,
+  .button:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+    z-index: -1;
+  }
+  
+  .button:after {
+    background-color: #3f72af;
+    z-index: -2;
+    width: 100%;
+  }
+  
+  .button:before {
+    background-color: #c40a47;
+  }
+  
+  .button:hover:before {
+    width: 100%;
+  }
+  
+  

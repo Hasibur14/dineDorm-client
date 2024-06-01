@@ -1,15 +1,15 @@
 import { Helmet } from "react-helmet-async";
 
 
-const Meals = () => {
+const Contact = () => {
     return (
         <div>
             <Helmet>
-                <title>All Menu || DineDorm</title>
+                <title>Contact || DineDorm</title>
             </Helmet>
-            <h2>All meals here......!!</h2>
+            <h2>Contact us.......!!!</h2>
         </div>
     );
 };
 
-export default Meals;
+export default Contact;
