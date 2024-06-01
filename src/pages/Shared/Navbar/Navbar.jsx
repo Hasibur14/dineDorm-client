@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IoIosClose, IoIosMenu } from "react-icons/io";
-import { IoBagHandleOutline, IoSearch } from "react-icons/io5";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { RiNotification2Line } from "react-icons/ri";
 import { Link, NavLink, useNavigation } from 'react-router-dom';
 import titleImg from '../../../assets/titleImg (2).png';
 import './Navbar.css';
@@ -32,7 +33,7 @@ const Navbar = () => {
             )}
             <div data-aos="fade-left" className='container mx-auto  flex justify-between items-center py-3 z-10'>
                 <Link to="/">
-                    <img loading="lazy" src={titleImg} className='w-28' alt="Logo" />
+                    <img loading="lazy" src={titleImg} className='w-32' alt="Logo" />
                 </Link>
 
                 <div className='menu-bar lg:hidden' onClick={handleResponsiveBtn}>
@@ -53,8 +54,8 @@ const Navbar = () => {
 
                 <div className={`lg:flex items-center ${navbarMobile ? 'responsiveRightSide' : 'hidden'} lg:space-x-6`}>
                     <div className='flex my-3 lg:my-0'>
-                        <div className='text-xl hover:text-[var(--mainColor)]'><IoBagHandleOutline /></div>
-                        <div className='text-xl mx-4 hover:text-[var(--mainColor)]'><IoSearch /></div>
+                        <div className='text-xl text-white'><IoBagHandleOutline /></div>
+                        <div className='text-xl mx-4 text-white'><RiNotification2Line className="text-2xl hover:text-primary" /></div>
                     </div>
                     <Link to='/services/65ff12d7ef05b89aa3ce6d3e' onClick={handleScroll}>
                         <button className='btn'>Appointment</button>
