@@ -1,10 +1,11 @@
 import toast from "react-hot-toast";
-import { SiSpinrilla } from "react-icons/si";
+import { FaGoogle } from "react-icons/fa";
+import { FiLogIn } from "react-icons/fi";
+import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../../components/Container/Container";
 import useAuth from "../../../hooks/useAuth";
 import "./SignUp.css";
-
 
 
 const SignUp = () => {
@@ -89,22 +90,21 @@ const SignUp = () => {
                             WELLCOME
                             TO OUR</h1>
                         <h1 className="my-4 text-4xl md:text-3xl lg:text-5xl font-bold text-white">
-                            EVENT PLANET
+                            Dine DORM
                         </h1>
                         <p className="text-sm text-gray-400">
-                            Join Our Event Planet today! Sign up to create your account and unlock a world of event planning possibilities. From booking tickets to managing events, we have got you covered. Let make your events extraordinary together!
+                            Join Our Dine Dorm today! Sign up to create your account and unlock a world of event planning possibilities. From booking tickets to managing events, we have got you covered. Let make your events extraordinary together!
                         </p>
                         <div className="flex flex-col md:flex-row gap-6 pt-5">
                             <Link to='/signIn'>
-                                <button className="button w-full">
+                                <button className="button flex w-full px-3 py-2">
                                     SIGN IN
+                                    <FiLogIn className="text-xl ml-2" />
                                 </button>
                             </Link>
-                            <button onClick={handleGoogleSignUp} className="button">
+                            <button onClick={handleGoogleSignUp} className="button flex px-3 py-2">
+                            <FaGoogle className="text-xl mr-2" />
                                 SIGNUP WITH GOOGLE
-                            </button>
-                            <button onClick={handleFacebookSignUp} className="button">
-                                SIGNUP WITH FACEBOOK
                             </button>
                         </div>
                     </div>
@@ -181,10 +181,10 @@ const SignUp = () => {
                             <div>
                                 <button
                                     type="submit"
-                                    className="button w-full"
+                                    className="button w-full py-2"
                                 >
                                     {loading ? (
-                                        <SiSpinrilla className="animate-spin m-auto" />
+                                        <TbFidgetSpinner className="animate-spin m-auto" />
                                     ) : (
                                         "SIGN UP"
                                     )}
@@ -193,8 +193,6 @@ const SignUp = () => {
                         </form>
                     </div>
                 </div>
-
-                {/* Right Section */}
             </Container>
         </div>
     );

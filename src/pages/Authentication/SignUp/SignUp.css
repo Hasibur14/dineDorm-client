@@ -1,5 +1,5 @@
 .signUp-bg{
-    background-image: url('../../assets//Register-image/register-img.jpg');
+    background-image: url('../../../assets/signupImg.jpg');
     background-color: #25252517;
     background-blend-mode: overlay;
     background-repeat: no-repeat;

@@ -34,7 +34,7 @@ color: wheat;
 /* button */
 
 .button {
-    background-color: rgb(47, 112, 191);
+    background-color: #34d1bc;
     cursor: pointer;
     border-radius: 4px;
     text-transform: uppercase;
@@ -46,10 +46,6 @@ color: wheat;
     color: white;
   }
   
-  .button:hover {
-    color: #fff;
-
-  }
   
   .button:before,
   .button:after {
@@ -65,7 +61,7 @@ color: wheat;
   }
   
   .button:after {
-    background-color: #3f72af;
+    background-color: #01b099;
     z-index: -2;
     width: 100%;
   }
