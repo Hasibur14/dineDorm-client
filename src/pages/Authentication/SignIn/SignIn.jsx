@@ -1,54 +1,59 @@
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaGoogle } from "react-icons/fa";
+import { FaSquareFacebook } from "react-icons/fa6";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../../components/Container/Container";
 import useAuth from "../../../hooks/useAuth";
 import './SignIn.css';
 
-
-
 const SignIn = () => {
-
     const navigate = useNavigate();
-    const { loading, signIn, signInGoogle } = useAuth();
-
+    const { loading, signIn, googleSignIn, signInWithFacebook } = useAuth();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     // Handle submit function
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        const termsAndConditionCheck = form.termsAndCondition.checked;
+    const onSubmit = async (data) => {
+        const { email, password, termsAndCondition } = data;
 
-        if (!termsAndConditionCheck) {
+        if (!termsAndCondition) {
             return toast.error('Please agree to the terms and conditions.');
         }
 
         try {
-            await signIn(email, password)
-            toast.success('Successfully Sign In')
+            await signIn(email, password);
+            toast.success('Successfully Signed In');
             navigate('/');
+        } catch (err) {
+            toast.error("Something went wrong. Please try again ☹");
+            console.error(err);
         }
-        catch (err) {
-            toast.error("Something went Wrong try again ☹")
-        }
-
     };
 
     // Google sign in 
     const handleSignInWithGoogle = async () => {
         try {
-            await signInGoogle()
-            navigate("/")
-            toast.success('Sign In Successfully')
+            await googleSignIn();
+            navigate("/");
+            toast.success('Sign In Successfully');
+        } catch (err) {
+            toast.error("Sign In Failed. Please try again ☹");
+            console.error(err);
         }
-        catch (err) {
-            toast.error("SigIn Faild Please Try Again ☹")
-        }
-    }
+    };
 
+    // Sign in with Facebook
+    const handleSignInWithFacebook = async () => {
+        try {
+            await signInWithFacebook();
+            navigate('/');
+            toast.success("Login Successfully");
+        } catch (error) {
+            toast.error("Sign In Failed. Please try again ☹");
+            console.error(error);
+        }
+    };
 
     return (
         <div className="signIn-bg">
@@ -57,8 +62,8 @@ const SignIn = () => {
                     {/* Left Section */}
                     <div className="mb-8 text-center md:text-start md:col-span-3 col-span-1">
                         <h1 className="my-3 text-4xl md:text-3xl lg:text-5xl font-bold text-white">
-                            WELLCOME
-                            BACK </h1>
+                            WELCOME BACK
+                        </h1>
                         <h1 className="my-4 text-4xl md:text-3xl lg:text-5xl font-bold text-white">
                             TO OUR DINE DORM
                         </h1>
@@ -73,7 +78,11 @@ const SignIn = () => {
                             </Link>
                             <button className="button px-3 py-2 flex" onClick={handleSignInWithGoogle}>
                                 <FaGoogle className="text-xl mr-2" />
-                                SIGNUP WITH GOOGLE
+                                SIGN IN WITH GOOGLE
+                            </button>
+                            <button className="button px-3 py-2 flex" onClick={handleSignInWithFacebook}>
+                                <FaSquareFacebook className="text-xl mr-2" />
+                                SIGN IN WITH FACEBOOK
                             </button>
                         </div>
                     </div>
@@ -84,7 +93,7 @@ const SignIn = () => {
                             Log In Now
                         </div>
                         <form
-                            onSubmit={handleSubmit}
+                            onSubmit={handleSubmit(onSubmit)}
                             noValidate=""
                             action=""
                             className="space-y-4"
@@ -96,10 +105,11 @@ const SignIn = () => {
                                         type="email"
                                         name="email"
                                         id="email"
-                                        required
+                                        {...register("email", { required: "Email is required" })}
                                         placeholder="Enter Your Email Here"
                                         className="w-full px-3 py-2 input-style transition-all duration-300"
                                     />
+                                    {errors.email && <span className="text-red-500">{errors.email.message}</span>}
                                 </div>
                                 <div>
                                     <input
@@ -107,26 +117,27 @@ const SignIn = () => {
                                         name="password"
                                         autoComplete="new-password"
                                         id="password"
-                                        required
+                                        {...register("password", { required: "Password is required" })}
                                         placeholder="*******"
                                         className="w-full px-3 py-2 input-style  transition-all duration-300"
                                     />
+                                    {errors.password && <span className="text-red-500">{errors.password.message}</span>}
                                 </div>
                                 <div className="flex items-start gap-2">
                                     <input
                                         type="checkbox"
                                         name="termsAndCondition"
+                                        {...register("termsAndCondition", { required: true })}
                                         className="text-xl hover:cursor-pointer"
                                     />
-                                    <span className=" text-white -mt-[5px]">
+                                    <span className="text-white -mt-[5px]">
                                         I have read and agree to the website
-                                        <Link to="/termCondition"
-                                            className="font-semibold text-primary ml-2 hover:underline"
-                                        >
+                                        <Link to="/termCondition" className="font-semibold text-primary ml-2 hover:underline">
                                             terms and conditions
                                         </Link>
                                     </span>
                                 </div>
+                                {errors.termsAndCondition && <span className="text-red-500">You must agree to the terms and conditions</span>}
                             </div>
 
                             {/* Submit Button */}
@@ -146,7 +157,6 @@ const SignIn = () => {
                     </div>
                 </div>
             </Container>
-
         </div>
     );
 };

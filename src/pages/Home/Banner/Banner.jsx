@@ -1,6 +1,6 @@
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
-import bannerBg from "../../../assets/banner_101.jpg";
+import bannerBg from "../../../assets/banner_102.jpg";
 import Container from "../../../components/Container/Container";
 
 
@@ -9,7 +9,7 @@ const HomeBanner = () => {
     return (
         <div
             className="h-[400px] md:min-h-screen grid place-items-center
-      bg-cover bg-no-repeat bg-[#1f0f15cf] bg-blend-overlay "
+      bg-cover bg-no-repeat bg-[#12080ccf] bg-blend-overlay "
             style={{
                 backgroundImage: `url(${bannerBg})`,
             }}
