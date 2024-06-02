@@ -1,22 +1,36 @@
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { FaRegUserCircle } from "react-icons/fa";
-import { FiLogOut } from "react-icons/fi";
-import { IoIosClose, IoIosMenu } from "react-icons/io";
-import { MdOutlineDashboardCustomize } from "react-icons/md";
-import { Link, NavLink } from 'react-router-dom';
-import titleImg from '../../../assets/titleImg (2).png';
+import { useEffect, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
+import { SlMenu } from "react-icons/sl";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../../assets/titleImg (2).png";
+import Container from "../../../components/Container/Container";
+import NotificationDropDown from "../../../components/Notification/NotificationDropDown";
 import useAuth from "../../../hooks/useAuth";
-import './Navbar.css';
+import MenuDropdown from "./MenuDropDown";
 
 const Navbar = () => {
-    const [navbarMobile, setNavbarMobile] = useState(false);
     const { user, logOut } = useAuth();
-    console.log(user);
+    const [isMenuTrue, setIsMenuTrue] = useState(false);
+    const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+    const [notificationCount, setNotificationCount] = useState(3);
 
-    const handleResponsiveBtn = () => {
-        setNavbarMobile(!navbarMobile);
+
+    useEffect(() => {
+        const savedNotificationCount = localStorage.getItem('notificationCount');
+        if (savedNotificationCount !== null) {
+            setNotificationCount(parseInt(savedNotificationCount, 10));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('notificationCount', notificationCount);
+    }, [notificationCount]);
+
+    const handleNotificationClick = () => {
+        setIsNotificationOpen(!isNotificationOpen);
+        setNotificationCount(0);
     };
+
 
     const navLinkStyles = ({ isActive, isPending }) =>
         isPending ? "pending"
@@ -24,74 +38,103 @@ const Navbar = () => {
                 ? "text-white px-3.5 py-1.5 bg-gradient-to-tl from-[#121e2d] to-[#34d1bc] rounded-md"
                 : "hover:text-[#FF497C]";
 
-    const handleLogOut = () => {
-        logOut();
-        toast.success('Logout successfully');
-    }
+    const navLinks = (
+        <>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/" className={navLinkStyles}>
+                Home
+            </NavLink>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/dashboard/profile" className={`block lg:hidden ${navLinkStyles}`}>
+                Dashboard
+            </NavLink>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/meals" className={navLinkStyles}>
+                All Meals
+            </NavLink>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/upcomingMeals" className={navLinkStyles}>
+                Upcoming Meals
+            </NavLink>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/about" className={navLinkStyles}>
+                About
+            </NavLink>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/contact" className={navLinkStyles}>
+                Contact
+            </NavLink>
+        </>
+    );
+
+    const authLinks = (
+        <>
+            {user ? (
+                <>
+                    <button className="btn btn-ghost btn-circle"
+                        onClick={handleNotificationClick}>
+                        <div className="indicator">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                            {notificationCount > 0 && <span className="badge badge-sm badge-error indicator-item text-white">{notificationCount}</span>}
+                            {isNotificationOpen && <NotificationDropDown />}
+                        </div>
+                    </button>
+                    <hr className="block lg:hidden" />
+                    <button className="hidden lg:block">
+                        <MenuDropdown />
+                    </button>
+                    <NavLink onClick={() => setIsMenuTrue(false)} to="signIn">
+                        <button
+                            className="font-semibold border-2 border-secondary rounded-md py-2 px-4 transition-all duration-500 ease-out hover:text-white hover:bg-secondary block lg:hidden"
+                            onClick={() => logOut()}
+                        >
+                            Logout
+                        </button>
+                    </NavLink>
+                </>
+            ) : (
+                <NavLink to="joinUs">
+                    <button
+                        className="font-semibold border-2 border-secondary rounded-md py-2 px-4 transition-all duration-500 ease-out hover:bg-secondary"
+                    >
+                        Join Us
+                    </button>
+                </NavLink>
+            )}
+        </>
+    );
 
     return (
-        <div className="absolute bg-[#0000007d] bg-opacity-100 top-0 z-50 w-full shadow-2xl py-3">
-            <div className='md:mx-10 lg:mx-72 flex justify-between items-center py-3 z-10'>
-                <Link to="/">
-                    <img loading="lazy" src={titleImg} className='w-28' alt="Logo" />
-                </Link>
-
-                <div className='menu-bar lg:hidden' onClick={handleResponsiveBtn}>
-                    {navbarMobile ? (
-                        <div className="text-5xl text-white hover:text-red-500"><IoIosClose /></div>
-                    ) : (
-                        <div className="text-5xl text-white hover:text-red-500"><IoIosMenu /></div>
-                    )}
-                </div>
-
-                <div className={`lg:flex list-none text-white font-medium ${navbarMobile ? 'responsive' : 'hidden'} lg:items-center lg:space-x-6`}>
-                    <NavLink to='/' className={navLinkStyles}><li>Home</li></NavLink>
-                    <NavLink to='/meals' className={navLinkStyles}><li>Meals</li></NavLink>
-                    <NavLink to='/upcomingMeals' className={navLinkStyles}><li>Upcoming Meals</li></NavLink>
-                    <NavLink to='/contact' className={navLinkStyles}><li>Contact</li></NavLink>
-                </div>
-
-                {user ? (
-                    <div className="dropdown dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                {user?.photoURL ? (
-                                    <img alt="User Avatar" src={user?.photoURL} />
-                                ) : (
-                                    <FaRegUserCircle className="text-4xl text-white hover:text-primary" />
-                                )}
-                            </div>
+        <div className="">
+            <div className="absolute bg-[#0000007d] bg-opacity-100 top-0 z-50 w-full shadow-2xl py-3">
+                <Container>
+                    <div className="flex justify-between items-center text-secondary lg:text-neutral">
+                        <div>
+                            <Link to="/" className="text-2xl font-bold">
+                                <img src={logo} className="w-32" alt="Dine Dorm" />
+                            </Link>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded w-72">
-                            <li>
-                                <a className="justify-between">
-                                    {user?.displayName}
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <hr />
-                            <li>
-                                <Link to="/dashboard">
-                                    <div className="flex">
-                                        <MdOutlineDashboardCustomize className="text-md mr-2 mt-1" />
-                                        <p>Dashboard</p>
-                                    </div>
-                                </Link>
-                            </li>
-                            <hr />
-                            <li onClick={handleLogOut} className="hover:bg-red-500 hover:text-white">
-                                <div className="flex">
-                                    <FiLogOut className="mr-2 mt-1" />
-                                    <p>Logout</p>
-                                </div>
-                            </li>
+                        <ul className="lg:flex items-center space-x-6 gap-1 hidden text-lg">
+                            {navLinks}
                         </ul>
+                        <ul className="hidden lg:flex items-center gap-5">
+                            {authLinks}
+                        </ul>
+                        <div className="block lg:hidden">
+                            <SlMenu
+                                onClick={() => setIsMenuTrue(true)}
+                                className={`text-2xl text-white font-bold cursor-pointer hover:text-secondary transition-all duration-300 ${isMenuTrue ? "hidden" : "block"}`}
+                            />
+                            <IoCloseOutline
+                                onClick={() => setIsMenuTrue(false)}
+                                className={`text-3xl text-white cursor-pointer hover:text-secondary transition-all duration-300 ${isMenuTrue ? "block" : "hidden"}`}
+                            />
+                        </div>
                     </div>
-                ) : (
-                    <NavLink to='/joinUs' className="hidden lg:flex text-white border rounded px-3 py-1.5 border-secondary hover:bg-secondary transition font-semibold">
-                        <p>Join Us</p>
-                    </NavLink>
-                )}
+                </Container>
+
+                <div className={`overflow-y-auto block lg:hidden transition-all bg-neutral duration-500 text-secondary w-full ${isMenuTrue ? "opacity-100 max-h-screen" : "opacity-0 max-h-0"} px-4`}>
+                    <ul className="pt-5">
+                        {navLinks}
+                    </ul>
+                    <ul className="pb-0 lg:pb-5 flex flex-col gap-3">
+                        {authLinks}
+                    </ul>
+                </div>
             </div>
         </div>
     );
