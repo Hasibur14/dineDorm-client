@@ -7,10 +7,10 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 const Main = () => {
     return (
         <div>
-           <div className="h-20">
+           <div className="">
                 <Navbar></Navbar>
             </div >
-            <div className="min-h-[calc(100vh-365px)]">
+            <div className="min-h-[calc(100vh-278px)]">
                 <Outlet ></Outlet>
             </div>
 
