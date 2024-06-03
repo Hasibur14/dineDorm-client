@@ -1,4 +1,5 @@
-
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 
 const MyTabs = ({ item }) => {
@@ -13,7 +14,7 @@ const MyTabs = ({ item }) => {
                     <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
 
                     <div className="flex mt-2 item-center">
-                    
+
                         {[...Array(5)].map((_, index) => (
                             <svg
                                 key={index}
@@ -26,13 +27,27 @@ const MyTabs = ({ item }) => {
                     </div>
 
                     <div className="flex justify-between mt-3 item-center">
-                        <h1 className="text-lg font-bold text-gray-700 dark:text-gray-200 md:text-xl">Price: ${item.price}</h1>
-                        <button className="px-2 py-1 text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545]">Details</button>
+                        <h1 className="text-md font-bold text-gray-700 dark:text-gray-200 md:text-xl">Price: ${item.price}</h1>
+
+                        <Link to={`/meal/${item._id}`}
+                            className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545]">Details
+                        </Link>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
+};
+
+MyTabs.propTypes = {
+    item: PropTypes.shape({
+        image: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        price: PropTypes.number.isRequired,
+        _id: PropTypes.string.isRequired,
+    }).isRequired,
 };
 
 export default MyTabs;

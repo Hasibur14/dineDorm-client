@@ -29,16 +29,20 @@ const MealCategory = () => {
                     Heading='Menu Of The Day'
                 />
             </div>
-            <Container>
-                <div className='py-16 mx-auto text-lg text-secondary'>
-                    <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className='font-semibold cursor-pointer'>
-                        <TabList className="w-[500px] mx-auto mb-16">
-                            <Tab>ALL MENUS</Tab>
-                            <Tab>BREAKFAST</Tab>
-                            <Tab>LUNCH</Tab>
-                            <Tab>DINNER</Tab>
-                        </TabList>
 
+            <div className='text-primary'>
+                <Tabs defaultIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className='font-semibold cursor-pointer space-y-10'>
+                    <div className='w-[500px] mx-auto'>
+                        <TabList>
+                            <div className='ml-10'>
+                                <Tab>ALL MENUS</Tab>
+                                <Tab>BREAKFAST</Tab>
+                                <Tab>LUNCH</Tab>
+                                <Tab>DINNER</Tab>
+                            </div>
+                        </TabList>
+                    </div>
+                    <Container>
                         <TabPanel>
                             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-20'>
                                 {meal.map(item => (
@@ -67,9 +71,10 @@ const MealCategory = () => {
                                 ))}
                             </div>
                         </TabPanel>
-                    </Tabs>
-                </div>
-            </Container>
+                    </Container>
+                </Tabs>
+            </div>
+
         </div>
     );
 };
