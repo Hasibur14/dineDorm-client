@@ -1,9 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
 import Meals from "../pages/AllMeals/Meals";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Contact from "../pages/Contact/Contact";
+import MyProfile from "../pages/Dashboard/User/MyProfile/MyProfile";
+import RequestedMeals from "../pages/Dashboard/User/RequestedMeals/RequestedMeals";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
 import JoinUs from "../pages/JoinUs/JoinUs";
@@ -44,8 +47,21 @@ export const router = createBrowserRouter([
                 path: '/SignUp',
                 element: <SignUp></SignUp>
             },
+        ],
+    },
+    {
+        path: '/dashboard',
+        element: <DashboardLayout />,
+        children: [
+            {
+                path: 'profile',
+                element: <MyProfile></MyProfile>
+            },
+            {
+                path: 'requested-meals',
+                element: <RequestedMeals></RequestedMeals>
+            },
         ]
-
     }
 ])
 

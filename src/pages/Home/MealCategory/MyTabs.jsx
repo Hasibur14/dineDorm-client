@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
+import { BiSolidMessageSquareDetail } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 
 const MyTabs = ({ item }) => {
     return (
         <div>
-            <div className="flex max-w-2xl h- overflow-hidden bg-neutral rounded-lg shadow-lg dark:bg-gray-800 hover:border border-red-500">
+            <div className="flex max-w-3xl overflow-hidden bg-neutral rounded-lg shadow-lg dark:bg-gray-800 hover:border border-red-500">
                 <div className="w-2/5 bg-cover" style={{ backgroundImage: `url(${item.image})` }}></div>
 
                 <div className="w-2/3 p-4 md:p-4">
-                    <h1 className="text-xl font-bold text-gray-800 dark:text-white">{item.title}</h1>
-
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">{item.description}</p>
-
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-white"> {item.title}</h1>
+                    <p className="mt-2  text-gray-600 dark:text-gray-400">
+                    {item.description.substring(0, 40) + '...'}
+                        </p>
                     <div className="flex mt-2 item-center">
 
                         {[...Array(5)].map((_, index) => (
@@ -26,13 +27,13 @@ const MyTabs = ({ item }) => {
                         ))}
                     </div>
 
-                    <div className="flex justify-between mt-3 item-center">
-                        <h1 className="text-md font-bold text-gray-700 dark:text-gray-200 md:text-xl">Price: ${item.price}</h1>
+                    <h1 className="text-md font-bold text-gray-700 dark:text-gray-200 md:text-xl">Price: ${item.price}</h1>
 
-                        <Link to={`/meal/${item._id}`}
-                            className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545]">Details
-                        </Link>
-                    </div>
+                    <Link to={`/meal/${item._id}`}
+                        className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-full w-full from-[#910404] to-[#DC3545] mt-2">
+                            <BiSolidMessageSquareDetail className='text-xl' />
+                        Details
+                    </Link>
                 </div>
             </div>
         </div>

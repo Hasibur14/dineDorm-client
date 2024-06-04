@@ -44,28 +44,28 @@ const MealCategory = () => {
                     </div>
                     <Container>
                         <TabPanel>
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-20'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10'>
                                 {meal.map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-20'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-10'>
                                 {breakfast.map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-20'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-10'>
                                 {lunch.map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
-                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-20'>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 lg:gap-10'>
                                 {dinner.map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}

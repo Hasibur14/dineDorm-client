@@ -5,7 +5,7 @@ import Container from '../Container/Container';
 const BannerTitle = ({ bannerImg, title, subTitle }) => {
     return (
         <div
-            className="grid md:h-72 lg:h-[450px] place-items-center bg-cover bg-no-repeat bg-[#3f1212cf] bg-blend-overlay"
+            className="grid md:h-72 lg:h-[450px] place-items-center bg-cover bg-no-repeat bg-[#1e1d22cf] bg-blend-overlay"
             style={{
                 backgroundImage: `url(${bannerImg})`,
             }}
