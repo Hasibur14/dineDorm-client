@@ -91,7 +91,7 @@ const Sidebar = () => {
         <div className="flex">
             {/* side bar */}
             <div
-                className={`fixed h-screen w-[280px] bg-[#17283f] border-r shadow-2xl px-4 pt-5 top-0 lg:left-0 z-50 transition-all
+                className={`fixed h-screen w-[280px] bg-[#050c3c] border-r shadow-2xl px-6 pt-5 top-0 lg:left-0 z-50 transition-all
          duration-300 ${isMenuTrue ? "left-0" : "-left-[300px]"}`}
                 style={{ boxShadow: " 6px 0px 5px 0px rgba(79,79,79,0.75);" }}
             >
@@ -108,21 +108,20 @@ const Sidebar = () => {
             <div className="w-[343px] hidden lg:block"></div>
 
             {/* main */}
-            <div className="bg-[#F8F7FA] w-full h-screen col-span-10">
+            <div className="bg-[#F8F7FA] w-full lg:w-[1600px] h-44 rounded col-span-10">
                 {/* dashboard nav */}
-                <div className="overflow-y-auto w-[95%] mx-auto h-20 shadow-2xl bg-white  my-10 rounded-lg flex justify-between items-center px-4">
+                <div className="overflow-y-auto w-[95%] mx-auto h-20 shadow-2xl bg-white  my-10 rounded-lg flex justify-between items-center px-10">
                     <AiOutlineMenu
                         onClick={() => setIsMenuTrue(true)}
                         className="text-2xl cursor-pointer block lg:hidden"
                     />
-                    {/* user */}
-                    {/* empty div for large device */}
+
                     <div></div>
                     <div>
                         <img
                             src={user?.photoURL}
                             alt=""
-                            className="w-12 h-12 rounded-full object-cover"
+                            className="w-12 h-12 rounded-full border border-red-600 object-cover"
                             title={user?.displayName}
                         />
                     </div>
