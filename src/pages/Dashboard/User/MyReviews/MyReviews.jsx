@@ -1,6 +1,8 @@
+import { LiaEditSolid } from "react-icons/lia";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 
-const RequestedMeals = () => {
+const MyReviews = () => {
     return (
         <div>
             <div className=" w-full p-2 mx-auto sm:p-4 dark:text-gray-800">
@@ -22,7 +24,9 @@ const RequestedMeals = () => {
                                 <th className="p-3">LIKES</th>
                                 <th className="p-3">REVIEW</th>
                                 <th className="p-3 text-right">STATUS</th>
-                                <th className="p-3">CANCEL</th>
+                                <th className="p-3">EDIT</th>
+                                <th className="p-3">DELETE</th>
+                                <th className="p-3">VIEW</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,9 +48,15 @@ const RequestedMeals = () => {
                                 <td className="p-3 text-right">
                                     <p>$15,792</p>
                                 </td>
+                                <td>
+                                <LiaEditSolid className="text-3xl hover:text-green-500"/>
+                                </td>
+                                <td>
+                                <RiDeleteBinLine className="text-3xl hover:text-red-600"/>
+                                </td>
                                 <td className="p-3 text-right">
-                                    <span className="px-3 py-2 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
-                                        <span> Cancel</span>
+                                    <span className="btn px-3 py-1 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
+                                        <span> View</span>
                                     </span>
                                 </td>
                             </tr>
@@ -58,4 +68,4 @@ const RequestedMeals = () => {
     );
 };
 
-export default RequestedMeals;
+export default MyReviews;

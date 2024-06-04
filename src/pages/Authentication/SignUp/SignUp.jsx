@@ -1,18 +1,18 @@
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaGoogle } from "react-icons/fa";
-import { FaSquareFacebook } from "react-icons/fa6";
 import { FiLogIn } from "react-icons/fi";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import Container from "../../../components/Container/Container";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import "./SignUp.css";
 
 const SignUp = () => {
-    const { createUser, updateUserProfile, googleSignIn, signInWithFacebook, loading, setLoading } = useContext(AuthContext);
+    const {  createUser, updateUserProfile, loading, setLoading } = useAuth()
+   
+
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,6 +33,8 @@ const SignUp = () => {
                 name: data.name,
                 email: data.email,
                 photo: data.photoURL,
+                badge: 'bronze',
+                role: 'user'
             };
 
             const res = await axiosPublic.post(`/users`, userInfo);
@@ -48,33 +50,6 @@ const SignUp = () => {
         }
     };
 
-    const handleSignInWithGoogle = async () => {
-        try {
-            setLoading(true);
-            await googleSignIn();
-            navigate("/");
-            toast.success('Sign In Successfully');
-        } catch (err) {
-            toast.error("Sign In Failed. Please try again ☹");
-            console.error(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const handleSignInWithFacebook = async () => {
-        try {
-            setLoading(true);
-            await signInWithFacebook();
-            navigate('/');
-            toast.success("Login Successfully");
-        } catch (error) {
-            toast.error("Sign In Failed. Please try again ☹");
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    };
 
     return (
         <div className="signUp-bg py-[80px] md:pt-[50px] lg:pt-[68px]">
@@ -89,7 +64,7 @@ const SignUp = () => {
                             Dine DORM
                         </h1>
                         <p className="text-sm text-gray-400">
-                            Join Our Dine Dorm today! Sign up to create your account and unlock a world of event planning possibilities. From booking tickets to managing events, we have got you covered. Let's make your events extraordinary together!
+                            Join Our Dine Dorm today! Sign up to create your account and unlock a world of event planning possibilities. From booking tickets to managing events, we have got you covered. Lets make your events extraordinary together!
                         </p>
                         <div className="flex flex-col md:flex-row gap-6 pt-5">
                             <Link to='/signIn'>
@@ -98,14 +73,7 @@ const SignUp = () => {
                                     <FiLogIn className="text-xl ml-2" />
                                 </button>
                             </Link>
-                            <button onClick={handleSignInWithGoogle} className="button flex px-3 py-2">
-                                <FaGoogle className="text-xl mr-2" />
-                                SIGNUP WITH GOOGLE
-                            </button>
-                            <button className="button px-3 py-2 flex" onClick={handleSignInWithFacebook}>
-                                <FaSquareFacebook className="text-xl mr-2" />
-                                SIGN IN WITH FACEBOOK
-                            </button>
+                            <SocialLogin></SocialLogin>
                         </div>
                     </div>
 

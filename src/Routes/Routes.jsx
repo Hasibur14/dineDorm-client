@@ -6,6 +6,8 @@ import SignIn from "../pages/Authentication/SignIn/SignIn";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Contact from "../pages/Contact/Contact";
 import MyProfile from "../pages/Dashboard/User/MyProfile/MyProfile";
+import MyReviews from "../pages/Dashboard/User/MyReviews/MyReviews";
+import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
 import RequestedMeals from "../pages/Dashboard/User/RequestedMeals/RequestedMeals";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home/Home";
@@ -57,9 +59,19 @@ export const router = createBrowserRouter([
                 path: 'profile',
                 element: <MyProfile></MyProfile>
             },
+
+            // User 
             {
                 path: 'requested-meals',
                 element: <RequestedMeals></RequestedMeals>
+            },
+            {
+                path: 'my-reviews',
+                element: <MyReviews></MyReviews>
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory></PaymentHistory>
             },
         ]
     }

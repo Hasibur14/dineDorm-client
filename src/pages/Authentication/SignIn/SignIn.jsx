@@ -1,16 +1,15 @@
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaGoogle } from "react-icons/fa";
-import { FaSquareFacebook } from "react-icons/fa6";
 import { TbFidgetSpinner } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../../../components/Container/Container";
+import SocialLogin from "../../../components/SocialLogin/SocialLogin";
 import useAuth from "../../../hooks/useAuth";
 import './SignIn.css';
 
 const SignIn = () => {
     const navigate = useNavigate();
-    const { loading, signIn, googleSignIn, signInWithFacebook } = useAuth();
+    const { loading, signIn, } = useAuth();
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     // Handle submit function
@@ -31,29 +30,6 @@ const SignIn = () => {
         }
     };
 
-    // Google sign in 
-    const handleSignInWithGoogle = async () => {
-        try {
-            await googleSignIn();
-            navigate("/");
-            toast.success('Sign In Successfully');
-        } catch (err) {
-            toast.error("Sign In Failed. Please try again ☹");
-            console.error(err);
-        }
-    };
-
-    // Sign in with Facebook
-    const handleSignInWithFacebook = async () => {
-        try {
-            await signInWithFacebook();
-            navigate('/');
-            toast.success("Login Successfully");
-        } catch (error) {
-            toast.error("Sign In Failed. Please try again ☹");
-            console.error(error);
-        }
-    };
 
     return (
         <div className="signIn-bg">
@@ -76,14 +52,7 @@ const SignIn = () => {
                                     SIGN UP
                                 </button>
                             </Link>
-                            <button className="button px-3 py-2 flex" onClick={handleSignInWithGoogle}>
-                                <FaGoogle className="text-xl mr-2" />
-                                SIGN IN WITH GOOGLE
-                            </button>
-                            <button className="button px-3 py-2 flex" onClick={handleSignInWithFacebook}>
-                                <FaSquareFacebook className="text-xl mr-2" />
-                                SIGN IN WITH FACEBOOK
-                            </button>
+                           <SocialLogin></SocialLogin>
                         </div>
                     </div>
 

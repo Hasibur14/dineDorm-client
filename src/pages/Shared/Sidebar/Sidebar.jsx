@@ -1,14 +1,11 @@
 import { AiOutlineMenu } from "react-icons/ai";
-import { FaCalendarAlt, FaHome, FaUserAlt } from "react-icons/fa";
-import { FaCodePullRequest } from "react-icons/fa6";
-import { FiShoppingCart } from "react-icons/fi";
-import { IoMdCart } from "react-icons/io";
-import { MdPayments, MdSummarize } from "react-icons/md";
+import { FaHome, FaUserAlt } from "react-icons/fa";
+import { MdOutlineRateReview, MdPayments } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 // import { AiOutlineMenuFold } from "react-icons/ai";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
-import { IoCreate } from "react-icons/io5";
+import { VscRequestChanges } from "react-icons/vsc";
 import logo from "../../../assets/titleImg (2).png";
 import useAuth from "../../../hooks/useAuth";
 
@@ -34,15 +31,10 @@ const Sidebar = () => {
                 <li>My Profile</li>
             </NavLink>
 
-            <NavLink to="/dashboard/create-blog" className={iconStyle}>
-                <IoCreate></IoCreate>
-                <li> Create Blog</li>
-            </NavLink>
-
             {/* {role && role === "admin" ? ( */}
             <>
                 {/* admin routes */}
-                <NavLink to="/dashboard/add-product" className={iconStyle}>
+                {/* <NavLink to="/dashboard/add-product" className={iconStyle}>
                     <FiShoppingCart></FiShoppingCart>
                     <li> Add Product</li>
                 </NavLink>
@@ -57,25 +49,20 @@ const Sidebar = () => {
                 <NavLink to="/dashboard/admin-summary" className={iconStyle}>
                     <MdSummarize></MdSummarize>
                     <li> Admin Summary</li>
-                </NavLink>
+                </NavLink> */}
             </>
             {/* ) : ( */}
             <>
                 {/* user Routes */}
 
-                {/* <NavLink to="/dashboard/summary" className={iconStyle}>
-            <AiOutlineMenuFold></AiOutlineMenuFold>
-            <li>Summary</li>
-          </NavLink> */}
-
-                <NavLink to="/dashboard/my-events" className={iconStyle}>
-                    <FaCalendarAlt></FaCalendarAlt>
-                    <li>My Events</li>
+                <NavLink to="/dashboard/requested-meals" className={iconStyle}>
+                    <VscRequestChanges className="text-2xl "/>
+                    <li>Requested Meals</li>
                 </NavLink>
 
-                <NavLink to="/dashboard/my-cart" className={iconStyle}>
-                    <IoMdCart></IoMdCart>
-                    <li> My Cart</li>
+                <NavLink to="/dashboard/my-reviews" className={iconStyle}>
+                <MdOutlineRateReview className="text-2xl" />
+                    <li> My Reviews</li>
                 </NavLink>
 
                 <NavLink to="/dashboard/payment-history" className={iconStyle}>
