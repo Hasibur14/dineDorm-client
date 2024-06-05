@@ -30,3 +30,19 @@ color: wheat;
     background-color: #ffffff28;  
   }
   
+/* 
+ 
+
+/* for all input field in hole projects */
+.all-input-style {
+  background-color: transparent;
+    border: 2px solid rgba(150, 149, 149, 0.719);
+    transition: background-color 0.3s ease, border 0.3s ease;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .all-input-style:focus {
+    background-color: #ffffff28;  
+  }
+  
