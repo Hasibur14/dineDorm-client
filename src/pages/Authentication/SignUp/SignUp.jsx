@@ -10,8 +10,8 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import "./SignUp.css";
 
 const SignUp = () => {
-    const {  createUser, updateUserProfile, loading, setLoading } = useAuth()
-   
+    const { createUser, updateUserProfile, loading, setLoading } = useAuth()
+
 
     const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
@@ -34,7 +34,6 @@ const SignUp = () => {
                 email: data.email,
                 photo: data.photoURL,
                 badge: 'bronze',
-                role: 'user'
             };
 
             const res = await axiosPublic.post(`/users`, userInfo);

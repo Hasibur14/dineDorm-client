@@ -3,11 +3,16 @@ import profileBg from '../../../../assets/profileBg.jpg';
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import useAuth from "../../../../hooks/useAuth";
 
+
 const MyProfile = () => {
 
-    const { user , loading} = useAuth();
+    const { user, loading } = useAuth();
+    // const {usersData}= useUser()
+    // const [usersData, userLoading] = useUser();
 
-if(loading){<LoadingSpinner></LoadingSpinner>}
+    // console.log(usersData)
+
+    if (loading) { <LoadingSpinner></LoadingSpinner> }
     return (
         <div className="">
             <div className='flex justify-center items-center md:mt-16'>
@@ -30,7 +35,8 @@ if(loading){<LoadingSpinner></LoadingSpinner>}
                         </a>
 
                         <p className='p-2 px-4 text-xs text-white bg-pink-500 rounded-full'>
-                          Gold
+                            {/* {usersData.badge} */}
+                            Gold
                         </p>
                         <p className='mt-2 md:text-xl font-medium text-gray-800 '>
                             User Id: {user?.uid}
@@ -50,10 +56,11 @@ if(loading){<LoadingSpinner></LoadingSpinner>}
 
                                 <div>
                                     <button className='bg-[#F43F5E] px-10 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053] block mb-1'>
-                                        Update Profile
+                                        {/* Role:{usersData} */}
+                                        Role
                                     </button>
                                     <button className='bg-[#F43F5E] px-7 py-1 rounded-lg text-white cursor-pointer hover:bg-[#af4053]'>
-                                        Change Password
+                                        Update Profile
                                     </button>
                                 </div>
                             </div>

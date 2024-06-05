@@ -5,6 +5,12 @@ import Meals from "../pages/AllMeals/Meals";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Contact from "../pages/Contact/Contact";
+import AddMeals from "../pages/Dashboard/Admin/AddMeals/AddMeals";
+import AllMeals from "../pages/Dashboard/Admin/AllMeals/AllMeals";
+import AllReviews from "../pages/Dashboard/Admin/AllReviews/AllReviews";
+import ManageUser from "../pages/Dashboard/Admin/ManageUser/ManageUser";
+import ServeMeals from "../pages/Dashboard/Admin/ServeMeals/ServeMeals";
+import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals/UpcomingMeals";
 import MyProfile from "../pages/Dashboard/User/MyProfile/MyProfile";
 import MyReviews from "../pages/Dashboard/User/MyReviews/MyReviews";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
@@ -42,11 +48,11 @@ export const router = createBrowserRouter([
                 element: <MealDetails></MealDetails>
             },
             {
-                path: '/SignIn',
+                path: '/signIn',
                 element: <SignIn></SignIn>
             },
             {
-                path: '/SignUp',
+                path: '/signUp',
                 element: <SignUp></SignUp>
             },
         ],
@@ -57,21 +63,46 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: 'profile',
-                element: <MyProfile></MyProfile>
+                element: <MyProfile />
             },
 
             // User 
             {
                 path: 'requested-meals',
-                element: <RequestedMeals></RequestedMeals>
+                element: <RequestedMeals />
             },
             {
                 path: 'my-reviews',
-                element: <MyReviews></MyReviews>
+                element: <MyReviews />
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PaymentHistory />
+            },
+            //admin
+            {
+                path: 'manage-user',
+                element: <ManageUser />
+            },
+            {
+                path: 'add-meals',
+                element: <AddMeals />
+            },
+            {
+                path: 'all-meals',
+                element: <AllMeals />
+            },
+            {
+                path: 'all-review',
+                element: <AllReviews />
+            },
+            {
+                path: 'serve-meals',
+                element: <ServeMeals />
+            },
+            {
+                path: 'upcoming-meals',
+                element: <UpcomingMeals />
             },
         ]
     }

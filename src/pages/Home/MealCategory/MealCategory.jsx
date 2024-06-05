@@ -15,8 +15,6 @@ const MealCategory = () => {
     const [tabIndex, setTabIndex] = useState(initialIndex === -1 ? 0 : initialIndex);
     const [meal] = useMeal();
 
-    console.log(meal);
-
     const breakfast = meal.filter(item => item.category === 'Breakfast');
     const lunch = meal.filter(item => item.category === 'Lunch');
     const dinner = meal.filter(item => item.category === 'Dinner');

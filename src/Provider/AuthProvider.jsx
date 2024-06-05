@@ -9,6 +9,7 @@ import {
     signOut,
     updateProfile
 } from "firebase/auth";
+import PropTypes from 'prop-types';
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
 import useAxiosPublic from "../hooks/useAxiosPublic";
@@ -67,7 +68,6 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             if (currentUser) {
-                // get token and store client
                 const userInfo = { email: currentUser.email };
                 axiosPublic.post('/jwt', userInfo)
                     .then(res => {
@@ -76,18 +76,19 @@ const AuthProvider = ({ children }) => {
                             setLoading(false);
                         }
                     })
-            }
-            else {
-                // TODO: remove token (if token stored in the client side: Local storage, caching, in memory)
+                    .catch(error => {
+                        console.error('Error while generating JWT:', error);
+                        setLoading(false);
+                        // Handle error as needed
+                    });
+            } else {
                 localStorage.removeItem('access-token');
                 setLoading(false);
             }
-
         });
-        return () => {
-            return unsubscribe();
-        }
-    }, [axiosPublic])
+
+        return () => unsubscribe();
+    }, [axiosPublic]);
 
     const authInfo = {
         user,
@@ -106,6 +107,11 @@ const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     );
+};
+
+
+AuthProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export default AuthProvider;
