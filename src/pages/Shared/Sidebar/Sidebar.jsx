@@ -2,20 +2,26 @@ import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { FaCodePullRequest } from "react-icons/fa6";
-import { FiShoppingCart } from "react-icons/fi";
+import { HiOutlineServer } from "react-icons/hi";
 import { IoMdClose } from "react-icons/io";
-import { MdOutlineRateReview, MdPayments, MdSummarize } from "react-icons/md";
+import { MdLogout, MdManageHistory, MdOutlineAddchart, MdOutlineRateReview, MdOutlineUpcoming, MdPayments } from "react-icons/md";
 import { VscRequestChanges } from "react-icons/vsc";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../assets/titleImg (2).png";
 import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
 
 const Sidebar = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
+    const navigate = useNavigate()
     const [isMenuTrue, setIsMenuTrue] = useState(false);
+    const [isAdmin] = useAdmin();
 
-    const [isAdmin] = useAdmin()
+
+    const handleSignOut = () => {
+        logOut()
+        navigate('/signIn')
+    }
 
     const iconStyle = ({ isActive }) =>
         isActive
@@ -26,9 +32,8 @@ const Sidebar = () => {
     return (
         <div className="flex">
             <div
-                className={`fixed h-screen w-[280px] bg-[#050c3c] border-r shadow-2xl px-6 pt-5 top-0 lg:left-0 z-50 transition-all duration-300 ${isMenuTrue ? "left-0" : "-left-[300px]"
-                    }`}
-            >
+                className={`fixed h-screen w-[280px] bg-[#050c3c] border-r shadow-2xl px-3 pt-4 top-0 lg:left-0 z-50 transition-all duration-300 ${isMenuTrue ? "left-0" : "-left-[300px]"
+                    }`} >
                 <div className="flex justify-between items-center shadow-lg shadow-primary">
                     <img src={logo} alt="Dine Dorm" className="w-36 lg:ml-4 lg:mb-" />
                     <IoMdClose
@@ -45,15 +50,15 @@ const Sidebar = () => {
                         <FaUserAlt />
                         <li>My Profile</li>
                     </NavLink>
-                    
+
                     {isAdmin ? (
                         <>
                             <NavLink to="/dashboard/manage-user" className={iconStyle}>
-                                <FiShoppingCart />
+                                <MdManageHistory className="text-2xl" />
                                 <li>Manage User</li>
                             </NavLink>
                             <NavLink to="/dashboard/add-meals" className={iconStyle}>
-                                <FiShoppingCart />
+                                <MdOutlineAddchart className="text-2xl" />
                                 <li> Add Meals</li>
                             </NavLink>
                             <NavLink to="/dashboard/all-meals" className={iconStyle}>
@@ -61,15 +66,15 @@ const Sidebar = () => {
                                 <li>All Meals</li>
                             </NavLink>
                             <NavLink to="/dashboard/all-reviews" className={iconStyle}>
-                                <MdSummarize />
+                                <MdOutlineRateReview className="text-2xl" />
                                 <li>All Reviews </li>
                             </NavLink>
                             <NavLink to="/dashboard/serve-meals" className={iconStyle}>
-                                <MdSummarize />
+                                <HiOutlineServer className="text-2xl" />
                                 <li>serve Meals</li>
                             </NavLink>
                             <NavLink to="/dashboard/upcoming-meals" className={iconStyle}>
-                                <MdSummarize />
+                                <MdOutlineUpcoming className="text-2xl" />
                                 <li>Upcoming Meals</li>
                             </NavLink>
                         </>
@@ -89,10 +94,20 @@ const Sidebar = () => {
                             </NavLink>
                         </>
                     )}
+
+                    <li>
+                        <button
+                            onClick={handleSignOut}
+                            className="button px-3 py-2 flex mt-20 md:mt-44 lg:mt-60 ml-4">
+                            Sign Out
+                            <MdLogout className="text-xl ml-2" />
+                        </button>
+                    </li>
                 </ul>
             </div>
-            <div className="w-[343px] hidden lg:block"></div>
-            <div className="bg-[#F8F7FA] w-full lg:w-[1600px] h-44 rounded col-span-10">
+            <div className="w-[343px] hidden lg:block">
+            </div>
+            <div className="bg-[#F8F7FA] w-full  h-44 rounded col-span-10">
                 <div className="overflow-y-auto w-[95%] mx-auto h-20 shadow-2xl bg-white  my-10 rounded-lg flex justify-between items-center px-10">
                     <AiOutlineMenu
                         onClick={() => setIsMenuTrue(true)}
