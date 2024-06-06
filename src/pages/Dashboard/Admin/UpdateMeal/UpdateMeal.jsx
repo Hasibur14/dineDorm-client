@@ -1,5 +1,7 @@
+
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import bannerImg from '../../../../assets/inputBgimg.jpg';
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
@@ -8,14 +10,18 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 const image_hosting_key = import.meta.env.VITE_IMGBB_API_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
-const AddMeals = () => {
+const UpdateMeal = () => {
+
+    const { _id, title, category, price, ingredients, description, rating, postTime, reviews, likes } = useLoaderData();
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate()
 
     const onSubmit = async (data) => {
-        console.log(data)
+
         // image upload to imgbb and then get an url
         const imageFile = { image: data.image[0] }
         const res = await axiosPublic.post(image_hosting_api, imageFile, {
@@ -40,16 +46,15 @@ const AddMeals = () => {
             };
             console.log(mealItem)
             // 
-            const mealRes = await axiosSecure.post('/meal', mealItem);
+            const mealRes = await axiosSecure.patch(`/meal/${_id}`, mealItem);
             console.log(mealRes.data)
-            if (mealRes.data.insertedId) {
-                // show success popup
-                reset();
-                toast.success('Meal added successfully')
-            }
+            toast.success('Meal added successfully');
+            reset();
+            navigate('/dashboard/all-meals');
         }
         console.log('with image url', res.data);
     };
+
 
     return (
         <div
@@ -62,8 +67,8 @@ const AddMeals = () => {
                         <label className="text-white p-1">Title:</label>
                         <input
                             type="text"
+                            defaultValue={title}
                             {...register("title", { required: true })}
-                            placeholder="Enter title here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
                         {errors.title && <span className="text-red-500">Title is required</span>}
@@ -74,9 +79,10 @@ const AddMeals = () => {
                         <select
                             id="category"
                             {...register("category", { required: true })}
+                            defaultValue={category}
                             className="w-full px-3 py-2 bg-transparent border-2 border-gray-500 rounded transition-all duration-300 text-gray-400"
                         >
-                            <option value="" defaultValue>Select category</option>
+                            <option defaultValue>Select category</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
                             <option value="Dinner">Dinner</option>
@@ -89,6 +95,7 @@ const AddMeals = () => {
                         <input
                             type="file"
                             {...register('image', { required: true })}
+                            // defaultValue={image}
                             className="file-input w-full px-3 py-2 bg-transparent border-2
                             border-gray-500 transition-all text-white duration-300"
                         />
@@ -100,7 +107,7 @@ const AddMeals = () => {
                         <input
                             type="number"
                             {...register("price", { required: true })}
-                            placeholder="Enter price here"
+                            defaultValue={price}
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
                         {errors.price && <span className="text-red-500">Price is required</span>}
@@ -110,6 +117,7 @@ const AddMeals = () => {
                         <label className="text-white p-1">Ingredients:</label>
                         <textarea
                             {...register("ingredients", { required: true })}
+                            defaultValue={ingredients}
                             placeholder="Enter ingredients (comma-separated) here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
@@ -120,6 +128,7 @@ const AddMeals = () => {
                         <label className="text-white p-1">Description:</label>
                         <textarea
                             {...register("description", { required: true })}
+                            defaultValue={description}
                             placeholder="Enter description here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
@@ -131,6 +140,7 @@ const AddMeals = () => {
                         <input
                             type="number"
                             {...register("rating", { required: true })}
+                            defaultValue={rating}
                             placeholder="Enter rating here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
@@ -142,6 +152,7 @@ const AddMeals = () => {
                         <input
                             type="datetime-local"
                             {...register("postTime", { required: true })}
+                            defaultValue={postTime}
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
                         {errors.postTime && <span className="text-red-500">This field is required</span>}
@@ -152,6 +163,7 @@ const AddMeals = () => {
                         <input
                             type="number"
                             {...register("likes", { required: true })}
+                            defaultValue={likes}
                             placeholder="Enter likes here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         />
@@ -162,6 +174,7 @@ const AddMeals = () => {
                         <label className="text-white p-1">Reviews:</label>
                         <input
                             {...register("reviews", { required: true })}
+                            defaultValue={reviews}
                             placeholder="Enter reviews (comma-separated) here"
                             className="w-full px-3 py-2 all-input-style transition-all duration-300" />
                         {errors.reviews && <span className="text-red-500">Reviews are required</span>}
@@ -172,7 +185,7 @@ const AddMeals = () => {
                             type="submit"
                             className="button w-full p-2"
                         >
-                            Add Meals
+                            Update
                         </button>
                     </div>
                 </form>
@@ -181,4 +194,4 @@ const AddMeals = () => {
     );
 };
 
-export default AddMeals;
+export default UpdateMeal;

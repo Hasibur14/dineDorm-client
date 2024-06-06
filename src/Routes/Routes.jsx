@@ -11,6 +11,7 @@ import AllReviews from "../pages/Dashboard/Admin/AllReviews/AllReviews";
 import ManageUser from "../pages/Dashboard/Admin/ManageUser/ManageUser";
 import ServeMeals from "../pages/Dashboard/Admin/ServeMeals/ServeMeals";
 import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals/UpcomingMeals";
+import UpdateMeal from "../pages/Dashboard/Admin/UpdateMeal/UpdateMeal";
 import MyProfile from "../pages/Dashboard/User/MyProfile/MyProfile";
 import MyReviews from "../pages/Dashboard/User/MyReviews/MyReviews";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
@@ -66,7 +67,7 @@ export const router = createBrowserRouter([
                 element: <MyProfile />
             },
 
-            // User 
+            // User Routes
             {
                 path: 'requested-meals',
                 element: <RequestedMeals />
@@ -79,7 +80,8 @@ export const router = createBrowserRouter([
                 path: 'payment-history',
                 element: <PaymentHistory />
             },
-            //admin
+
+            // Admin Routes
             {
                 path: 'manage-user',
                 element: <ManageUser />
@@ -104,6 +106,11 @@ export const router = createBrowserRouter([
                 path: 'upcoming-meals',
                 element: <UpcomingMeals />
             },
+            {
+                path: 'meal/:id',
+                element: <UpdateMeal></UpdateMeal>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/meal/${params.id}`)
+            }
         ]
     }
 ])

@@ -24,7 +24,7 @@ const AllMeals = () => {
             if (result.isConfirmed) {
                 const res = await axiosSecure.delete(`/meal/${meal._id}`);
                 if (res.data.deletedCount > 0) {
-                    refetch(); 
+                    refetch();
                     toast.success('Meal has been deleted!');
                 }
             }
@@ -63,7 +63,8 @@ const AllMeals = () => {
                         </thead>
                         <tbody>
                             {meals.map((meal, index) => (
-                                <tr key={meal._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                <tr key={meal._id}
+                                    className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>
@@ -80,18 +81,22 @@ const AllMeals = () => {
                                         <p>{meal.admin}</p>
                                     </td>
                                     <td className="p-3">
-                                        <LiaEditSolid className="text-3xl hover:text-green-500" />
+                                        <Link to={`/dashboard/meal/${meal._id}`}>
+                                            <LiaEditSolid
+                                                className="text-3xl p-1 text-white bg-green-500 hover:scale-110 rounded" />
+                                        </Link>
                                     </td>
                                     <td className="p-3">
                                         <RiDeleteBinLine
                                             onClick={() => handleDeleteMeal(meal)}
-                                            className="text-3xl hover:text-red-600" />
+                                            className="text-3xl p-1 text-white bg-red-600 hover:scale-110 rounded" />
                                     </td>
-                                    <td className="p-2 text-right">
-                                        <Link to="#" className="btn px-5 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50 hover:bg-orange-700 lg:mr-4">
+                                    <td className="p-1">
+                                        <Link to={`/meal/${meal._id}`} className="py-2 px-4 text-white font-semibold rounded bg-cyan-500 dark:text-gray-50 hover:bg-orange-700 lg:mr-4">
                                             <span>View</span>
                                         </Link>
                                     </td>
+
                                 </tr>
                             ))}
                         </tbody>
