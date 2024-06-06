@@ -46,13 +46,13 @@ const Sidebar = () => {
                         <FaHome />
                         <li> Home</li>
                     </NavLink>
-                    <NavLink to="/dashboard/profile" className={iconStyle} navLinkStyles>
-                        <FaUserAlt />
-                        <li>My Profile</li>
-                    </NavLink>
 
                     {isAdmin ? (
                         <>
+                            <NavLink to="/dashboard/admin-profile" className={iconStyle} navLinkStyles>
+                                <FaUserAlt />
+                                <li>Admin Profile</li>
+                            </NavLink>
                             <NavLink to="/dashboard/manage-user" className={iconStyle}>
                                 <MdManageHistory className="text-2xl" />
                                 <li>Manage User</li>
@@ -80,6 +80,10 @@ const Sidebar = () => {
                         </>
                     ) : (
                         <>
+                            <NavLink to="/dashboard/profile" className={iconStyle} navLinkStyles>
+                                <FaUserAlt />
+                                <li>My Profile</li>
+                            </NavLink>
                             <NavLink to="/dashboard/requested-meals" className={iconStyle}>
                                 <VscRequestChanges className="text-2xl" />
                                 <li>Requested Meals</li>

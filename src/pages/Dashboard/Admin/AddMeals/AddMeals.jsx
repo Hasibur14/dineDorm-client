@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import bannerImg from '../../../../assets/inputBgimg.jpg';
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
@@ -12,7 +13,8 @@ const AddMeals = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const axiosPublic = useAxiosPublic()
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate()
 
     const onSubmit = async (data) => {
         console.log(data)
@@ -45,7 +47,8 @@ const AddMeals = () => {
             if (mealRes.data.insertedId) {
                 // show success popup
                 reset();
-                toast.success('Meal added successfully')
+                toast.success('Meal added successfully');
+                navigate('/dashboard/all-meals')
             }
         }
         console.log('with image url', res.data);

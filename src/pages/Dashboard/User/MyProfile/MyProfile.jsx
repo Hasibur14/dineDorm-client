@@ -7,12 +7,17 @@ import useAuth from "../../../../hooks/useAuth";
 const MyProfile = () => {
 
     const { user, loading } = useAuth();
-    // const {usersData}= useUser()
-    // const [usersData, userLoading] = useUser();
+    // const [totalMeals, setTotalMeals] = useState()
+    // const [meal] = useMeal();
 
-    // console.log(usersData)
+    // if (user?.email === meal.adminEmail){
+    //     const meals =
+    // }
 
-    if (loading) { <LoadingSpinner></LoadingSpinner> }
+
+
+
+        if (loading) { <LoadingSpinner></LoadingSpinner> }
     return (
         <div className="">
             <div className='flex justify-center items-center md:mt-16'>

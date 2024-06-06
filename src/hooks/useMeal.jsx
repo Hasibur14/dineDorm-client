@@ -13,8 +13,6 @@ const useMeal = () => {
         }
     })
 
-
-
     return [meal, loading, refetch]
 };
 

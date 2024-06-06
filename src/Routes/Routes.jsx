@@ -6,6 +6,7 @@ import SignIn from "../pages/Authentication/SignIn/SignIn";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
 import Contact from "../pages/Contact/Contact";
 import AddMeals from "../pages/Dashboard/Admin/AddMeals/AddMeals";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile";
 import AllMeals from "../pages/Dashboard/Admin/AllMeals/AllMeals";
 import AllReviews from "../pages/Dashboard/Admin/AllReviews/AllReviews";
 import ManageUser from "../pages/Dashboard/Admin/ManageUser/ManageUser";
@@ -62,12 +63,11 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashboardLayout />,
         children: [
+            // User Routes
             {
                 path: 'profile',
                 element: <MyProfile />
             },
-
-            // User Routes
             {
                 path: 'requested-meals',
                 element: <RequestedMeals />
@@ -82,6 +82,10 @@ export const router = createBrowserRouter([
             },
 
             // Admin Routes
+            {
+                path: 'admin-profile',
+                element: <AdminProfile></AdminProfile>
+            },
             {
                 path: 'manage-user',
                 element: <ManageUser />
