@@ -104,7 +104,7 @@ const MealDetails = () => {
                             <div className="flex">
                                 <div className="flex ml-10 bg-neutral-200 rounded p-1">
                                     <BiLike className="text-3xl hover:text-red-600 mr-2" />
-                                    <h5 className="text-xl">44</h5>
+                                    <h5 className="text-xl">{meal.likes}</h5>
                                 </div>
                                 <div className="flex ml-10 bg-neutral-200 rounded p-1">
                                     <FaRegComment className="text-3xl hover:text-red-600" />

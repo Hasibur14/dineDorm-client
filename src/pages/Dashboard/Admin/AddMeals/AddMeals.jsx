@@ -35,6 +35,7 @@ const AddMeals = () => {
                 rating: parseFloat(data.rating),
                 postTime: new Date(data.postTime).toISOString(),
                 reviews: data.reviews.split(','),
+                likes:data.likes,
                 admin: user?.displayName,
                 adminEmail: user?.email,
             };
@@ -53,7 +54,7 @@ const AddMeals = () => {
 
     return (
         <div
-            className="lg:w-[1520px] place-items-center bg-cover bg-no-repeat rounded-md py-6 bg-blend-overlay"
+            className="lg:w-[1520px] place-items-center bg-cover bg-[#0a726d] bg-no-repeat rounded-md py-6 bg-blend-overlay"
             style={{ backgroundImage: `url(${bannerImg})` }}
         >
             <div className="max-w-4xl mx-auto p-4">
@@ -74,9 +75,9 @@ const AddMeals = () => {
                         <select
                             id="category"
                             {...register("category", { required: true })}
-                            className="w-full px-3 py-2 all-input-style transition-all duration-300"
+                            className="w-full px-3 py-2 bg-transparent border-2 border-gray-500 rounded transition-all duration-300 text-gray-400"
                         >
-                            <option value="">Select category</option>
+                            <option value="" defaultValue>Select category</option>
                             <option value="Breakfast">Breakfast</option>
                             <option value="Lunch">Lunch</option>
                             <option value="Dinner">Dinner</option>
@@ -89,7 +90,8 @@ const AddMeals = () => {
                         <input
                             type="file"
                             {...register('image', { required: true })}
-                            className="file-input w-full px-3 py-2 all-input-style transition-all duration-300"
+                            className="file-input w-full px-3 py-2 bg-transparent border-2
+                            border-gray-500 transition-all text-white duration-300"
                         />
                         {errors.image && <span className="text-red-500">Image is required</span>}
                     </div>
