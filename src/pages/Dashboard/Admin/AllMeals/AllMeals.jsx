@@ -37,7 +37,7 @@ const AllMeals = () => {
 
     return (
         <div>
-            <div className="p-2 lg:w-[1520px] sm:p-4 dark:text-gray-800">
+            <div className="p-2 lg:w-[1520px] shadow-2xl rounded  sm:p-4 dark:text-gray-800 border">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Meals: {meals.length}</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md border">
@@ -64,7 +64,7 @@ const AllMeals = () => {
                         <tbody>
                             {meals.map((meal, index) => (
                                 <tr key={meal._id}
-                                    className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                    className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 hover:bg-red-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>

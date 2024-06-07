@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import bannerImg from '../../../../assets/inputBgimg.jpg';
+// import bannerImg from '../../../../assets/inputBgimg.jpg';
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosPublic from '../../../../hooks/useAxiosPublic';
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
@@ -52,28 +52,28 @@ const AddMeals = () => {
 
     return (
         <div
-            className="lg:w-[1520px] place-items-center bg-cover bg-[#0a726d] bg-no-repeat rounded-md py-6 bg-blend-overlay"
-            style={{ backgroundImage: `url(${bannerImg})` }}
+            className="lg:w-[1520px] place-items-center bg-cover bg-neutral-100 bg-no-repeat rounded-md py-6 bg-blend-overlay shadow-2xl"
+            // style={{ backgroundImage: `url(${bannerImg})` }}
         >
-            <div className="max-w-4xl mx-auto p-4">
+            <div className="max-w-7xl mx-auto p-4">
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 lg:grid-cols-2">
                     <div className="form-control">
-                        <label className="text-white p-1">Title:</label>
+                        <label className="text-black font-semibold p-1">Title:</label>
                         <input
                             type="text"
                             {...register("title", { required: true })}
                             placeholder="Enter title here"
-                            className="w-full px-3 py-2 all-input-style transition-all duration-300"
+                            className="w-full px-3 py-2 all-input-style transition-all duration-300 "
                         />
                         {errors.title && <span className="text-red-500">Title is required</span>}
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Category:</label>
+                        <label className="text-black font-semibold p-1">Category:</label>
                         <select
                             id="category"
                             {...register("category", { required: true })}
-                            className="w-full px-3 py-2 bg-transparent border-2 border-gray-500 rounded transition-all duration-300 text-gray-400"
+                            className="w-full px-3 py-2 all-input-style transition-all duration-300"
                         >
                             <option value="" defaultValue>Select category</option>
                             <option value="Breakfast">Breakfast</option>
@@ -84,18 +84,18 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Image URL:</label>
+                        <label className="text-black font-semibold p-1">Image URL:</label>
                         <input
                             type="file"
                             {...register('image', { required: true })}
-                            className="file-input w-full px-3 py-2 bg-transparent border-2
-                            border-gray-500 transition-all text-white duration-300"
+                            className="file-input w-full px-3 py-2 
+                         transition-all all-input-style font-semibold duration-300"
                         />
                         {errors.image && <span className="text-red-500">Image is required</span>}
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Price:</label>
+                        <label className="text-black font-semibold p-1">Price:</label>
                         <input
                             type="number"
                             {...register("price", { required: true })}
@@ -106,7 +106,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control lg:col-span-2">
-                        <label className="text-white p-1">Ingredients:</label>
+                        <label className="text-black font-semibold p-1">Ingredients:</label>
                         <textarea
                             {...register("ingredients", { required: true })}
                             placeholder="Enter ingredients (comma-separated) here"
@@ -116,7 +116,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control lg:col-span-2">
-                        <label className="text-white p-1">Description:</label>
+                        <label className="text-black font-semibold p-1">Description:</label>
                         <textarea
                             {...register("description", { required: true })}
                             placeholder="Enter description here"
@@ -126,7 +126,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Rating:</label>
+                        <label className="text-black font-semibold p-1">Rating:</label>
                         <input
                             type="number"
                             {...register("rating", { required: true })}
@@ -137,7 +137,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Post Time:</label>
+                        <label className="text-black font-semibold p-1">Post Time:</label>
                         <input
                             type="datetime-local"
                             {...register("postTime", { required: true })}
@@ -147,7 +147,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Likes:</label>
+                        <label className="text-black font-semibold p-1">Likes:</label>
                         <input
                             type="number"
                             {...register("likes", { required: true })}
@@ -158,7 +158,7 @@ const AddMeals = () => {
                     </div>
 
                     <div className="form-control">
-                        <label className="text-white p-1">Reviews:</label>
+                        <label className="text-black font-semibold p-1">Reviews:</label>
                         <input
                             {...register("reviews", { required: true })}
                             placeholder="Enter reviews (comma-separated) here"
@@ -166,7 +166,7 @@ const AddMeals = () => {
                         {errors.reviews && <span className="text-red-500">Reviews are required</span>}
                     </div>
 
-                    <div className="lg:col-span-2">
+                    <div className="lg:col-span-2 mt-6">
                         <button
                             type="submit"
                             className="button w-full p-2"

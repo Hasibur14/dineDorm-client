@@ -97,7 +97,7 @@ const ManageUser = () => {
                                         <td className="p-3">
                                             <p>{user.role || 'user'}</p>
                                         </td>
-                                        <td>
+                                        <td className="lg:px-10">
                                             {user.role === 'admin' ?
                                                 <MdOutlinePublishedWithChanges
                                                     className="text-[33px] bg-green-500 text-white p-0.5 rounded " />
@@ -107,7 +107,7 @@ const ManageUser = () => {
                                                     <FaUsers className="text-white text-2xl " />
                                                 </button>}
                                         </td>
-                                        <td>
+                                        <td className="lg:px-10">
                                             <button
                                                 onClick={() => handleDeleteUser(user)}
                                                 className="p-1 rounded bg-primary hover:scale-125">
@@ -116,7 +116,7 @@ const ManageUser = () => {
                                         </td>
 
                                         <td className="">
-                                            <span className=" px-3 py-  font-semibold rounded-md bg-sky-100 text-sky-500 dark:text-gray-50 lg:mr-4">
+                                            <span className=" ml-10 px-3 py-1 bg-sky-100 text-sky-500 dark:text-gray-50 lg:mr-4">
                                                 <span>{user.badge}</span>
                                             </span>
                                         </td>

@@ -27,7 +27,7 @@ const ServeMeals = () => {
 
     return (
         <div>
-            <div className="bg-[#F8F7FA] rounded shadow-md lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800">
+            <div className=" rounded shadow-2xl border lg:w-[1520px] bg-white  mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals: <span className="bg-fuchsia-600 text-lg text-white p-1 rounded-full">0{requestMeal.length}</span></h2>
                 <div className="overflow-x-auto border">
                     <table className="min-w-full text-md">
@@ -51,7 +51,7 @@ const ServeMeals = () => {
                         </thead>
                         <tbody>
                             {requestMeal.map((item, index) => (
-                                <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 hover:bg-red-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>
@@ -79,9 +79,9 @@ const ServeMeals = () => {
                                     <td className="p-1 text-right">
                                         <span
                                             onClick={() => handleStatusChange(item._id, 'delivery')}
-                                            className="btn px-3 lg:px-6  text-white font-semibold rounded-md bg-fuchsia-600 
-                                        hover:bg-pink-500 dark:text-gray-50">
-                                            <span>Serve</span>
+                                            className="px-3 lg:px-7 py-2  text-white font-semibold rounded-md bg-fuchsia-600 
+                                        hover:bg-pink-500 dark:text-gray-50 cursor-pointer">
+                                           Serve
                                         </span>
                                     </td>
                                 </tr>

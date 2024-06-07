@@ -48,7 +48,7 @@ const RequestedMeals = () => {
 
     return (
         <div>
-            <div className="bg-[#F8F7FA] lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800  shadow-lg rounded md:space-y-8">
+            <div className="lg:w-[1530px] p-2 border mx-auto sm:p-4 dark:text-gray-800  shadow-2xl rounded md:space-y-8">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight ">Request Meals:
                     <span className="bg-pink-500 text-lg text-white p-1 ml-2 rounded-full">0{reqMeals.length}</span>
                 </h2>
@@ -68,8 +68,8 @@ const RequestedMeals = () => {
                                 <th className="p-3">TITLE</th>
                                 <th className="p-3">LIKES</th>
                                 <th className="p-3">REVIEW</th>
-                                <th className="p-3">STATUS</th>
-                                <th className="p-3 ml-4">CANCEL</th>
+                                <th className="p-3">ORDER STATUS</th>
+                                <th className="p-3 ml-4">ORDER</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -102,7 +102,7 @@ const RequestedMeals = () => {
                                     <td className=" py-1 text-right">
                                         <span
                                             onClick={() => handleDeleteMeal(item)}
-                                            className="btn px-3 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50 hover:bg-red-700 mr-4">
+                                            className="py-2 px-3 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50 hover:bg-red-700 mr-4 cursor-pointer">
                                             Cancel
                                         </span>
                                     </td>
