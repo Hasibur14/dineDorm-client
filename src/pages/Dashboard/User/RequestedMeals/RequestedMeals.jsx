@@ -96,7 +96,7 @@ const RequestedMeals = () => {
                                             <span className={`h-1.5 w-1.5 rounded-full 
                                                 ${item.status === 'pending' && 'bg-orange-500'}
                                                 ${item.status === 'delivery' && 'bg-green-500'}`}></span>
-                                            <h2 className='text-sm font-normal'>{item.status}</h2>
+                                            <h2 className=' font-normal'>{item.status}</h2>
                                         </div>
                                     </td>
                                     <td className=" py-1 text-right">
