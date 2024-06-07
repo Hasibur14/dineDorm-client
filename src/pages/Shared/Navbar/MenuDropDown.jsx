@@ -1,16 +1,17 @@
 // import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { CgProfile } from "react-icons/cg";
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { PiSignOutBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
 
 const MenuDropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { user, logOut } = useAuth();
+    const [isAdmin] = useAdmin()
 
     // const [roles] = useRole();
     const roles = "admin";
@@ -76,10 +77,10 @@ const MenuDropdown = () => {
 
                                 {/* Admin Rules route */}
 
-                                {roles === "admin" && (
+                                {isAdmin && (
                                     <Link
                                         // to="/dashboard/profile"
-                                        to="/dashboard/profile"
+                                        to="/dashboard/admin-profile"
                                         className="px-4 py-3 hover:bg-primary hover:text-white transition font-semibold flex items-center"
                                     >
                                         <MdOutlineDashboardCustomize className="w-5 h-5 mr-2" />{" "}
@@ -89,20 +90,20 @@ const MenuDropdown = () => {
 
                                 {/* User Rules route */}
 
-                                {roles === "user" && (
+                                {!isAdmin && (
                                     <>
-                                        <Link className="px-4 py-3 hover:bg-primary hover:text-white transition font-semibold flex items-center">
+                                        <Link to='/dashboard/profile' className="px-4 py-3 hover:bg-primary hover:text-white transition font-semibold flex items-center">
                                             <MdOutlineDashboardCustomize className="w-5 h-5 mr-2" />{" "}
                                             Dashboard
                                         </Link>
 
-                                        <Link
+                                        {/* <Link
                                             to="/editProfile"
                                             className="px-4 border py-3 hover:bg-primary hover:text-white  transition font-semibold flex items-center "
                                         >
                                             <CgProfile className="w-5 h-5 mr-2"></CgProfile> Edit
                                             Profile
-                                        </Link>
+                                        </Link> */}
                                     </>
                                 )}
 

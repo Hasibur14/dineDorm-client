@@ -5,6 +5,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/titleImg (2).png";
 import Container from "../../../components/Container/Container";
 import NotificationDropDown from "../../../components/Notification/NotificationDropDown";
+import useAdmin from "../../../hooks/useAdmin";
 import useAuth from "../../../hooks/useAuth";
 import MenuDropdown from "./MenuDropDown";
 
@@ -13,6 +14,7 @@ const Navbar = () => {
     const [isMenuTrue, setIsMenuTrue] = useState(false);
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
     const [notificationCount, setNotificationCount] = useState(3);
+    const [isAdmin] = useAdmin()
 
     useEffect(() => {
         const savedNotificationCount = localStorage.getItem('notificationCount');
@@ -40,9 +42,16 @@ const Navbar = () => {
             <NavLink onClick={() => setIsMenuTrue(false)} to="/" className={navLinkStyles}>
                 <li>Home</li>
             </NavLink>
-            <NavLink onClick={() => setIsMenuTrue(false)} to="/dashboard/profile" className={`block lg:hidden ${navLinkStyles}`}>
-                <li>Dashboard</li>
-            </NavLink>
+            {
+                user && isAdmin && <NavLink onClick={() => setIsMenuTrue(false)} to="/dashboard/admin-profile" className={`block lg:hidden ${navLinkStyles}`}>
+                    <li>Dashboard</li>
+                </NavLink>
+            }
+            {
+                user && !isAdmin && <NavLink onClick={() => setIsMenuTrue(false)} to="/dashboard/profile" className={`block lg:hidden ${navLinkStyles}`}>
+                    <li>Dashboard</li>
+                </NavLink>
+            }
             <NavLink onClick={() => setIsMenuTrue(false)} to="/meals" className={navLinkStyles}>
                 <li>All Meals</li>
             </NavLink>

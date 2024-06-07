@@ -20,6 +20,7 @@ const AdminProfile = () => {
         }
     }, [user, meals]);
 
+
     useEffect(() => {
         if (user?.email && users.length > 0) {
             const currentUser = users.find(u => u.email === user.email);
@@ -27,6 +28,7 @@ const AdminProfile = () => {
         }
     }, [user, users]);
 
+    
     if (authLoading || mealsLoading) return <LoadingSpinner />;
 
     return (

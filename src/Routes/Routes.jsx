@@ -63,23 +63,6 @@ export const router = createBrowserRouter([
         path: '/dashboard',
         element: <DashboardLayout />,
         children: [
-            // User Routes
-            {
-                path: 'profile',
-                element: <MyProfile />
-            },
-            {
-                path: 'requested-meals',
-                element: <RequestedMeals />
-            },
-            {
-                path: 'my-reviews',
-                element: <MyReviews />
-            },
-            {
-                path: 'payment-history',
-                element: <PaymentHistory />
-            },
 
             // Admin Routes
             {
@@ -114,7 +97,25 @@ export const router = createBrowserRouter([
                 path: 'meal/:id',
                 element: <UpdateMeal></UpdateMeal>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/meal/${params.id}`)
-            }
+            },
+
+            // User Routes
+            {
+                path: 'profile',
+                element: <MyProfile />
+            },
+            {
+                path: 'requested-meals',
+                element: <RequestedMeals />
+            },
+            {
+                path: 'my-reviews',
+                element: <MyReviews />
+            },
+            {
+                path: 'payment-history',
+                element: <PaymentHistory />
+            },
         ]
     }
 ])

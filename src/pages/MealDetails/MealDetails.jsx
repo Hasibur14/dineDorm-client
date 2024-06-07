@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { BiLike } from "react-icons/bi";
 import { FaRegComment } from "react-icons/fa";
@@ -11,10 +12,14 @@ import BannerTitle from "../../components/BannerTitle/BannerTitle";
 import Container from "../../components/Container/Container";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import UserRequestedMeal from "../UserRequestedMeal/UserRequestedMeal";
+
 
 const MealDetails = () => {
     const { id } = useParams();
     const axiosCommon = useAxiosPublic();
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedMeal, setSelectedMeal] = useState(null);
 
     const { data: meal = {}, isLoading } = useQuery({
         queryKey: ['meal', id],
@@ -24,13 +29,23 @@ const MealDetails = () => {
         },
     });
 
-    if (isLoading) return <LoadingSpinner />;
-
+    //date formate
     const formattedDate = new Date(meal.postTime).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    const openModal = (meal) => {
+        setSelectedMeal(meal);
+        setIsOpen(true);
+    };
+
+    if (isLoading) return <LoadingSpinner />;
 
     return (
         <div>
@@ -63,7 +78,9 @@ const MealDetails = () => {
                             <Link to='/' className="button px-3 py-2 flex items-center">
                                 <TiArrowBack className="text-2xl mr-2" />Back Home
                             </Link>
-                            <button className="bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545] text-white px-3 py-2 flex items-center">
+                            <button
+                                onClick={() => openModal(meal)} 
+                                className="bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545] text-white px-3 py-2 flex items-center">
                                 Request <VscGitPullRequestGoToChanges className="text-xl ml-2" />
                             </button>
                         </div>
@@ -117,6 +134,14 @@ const MealDetails = () => {
                     </div>
                 </div>
             </Container>
+
+            {selectedMeal && (
+                <UserRequestedMeal
+                    closeModal={closeModal}
+                    isOpen={isOpen}
+                    meal={selectedMeal} 
+                />
+            )}
         </div>
     );
 };

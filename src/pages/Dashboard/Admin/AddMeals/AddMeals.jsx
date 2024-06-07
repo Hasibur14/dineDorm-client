@@ -40,18 +40,14 @@ const AddMeals = () => {
                 admin: user?.displayName,
                 adminEmail: user?.email,
             };
-            console.log(mealItem)
-            // 
             const mealRes = await axiosSecure.post('/meal', mealItem);
             console.log(mealRes.data)
             if (mealRes.data.insertedId) {
-                // show success popup
                 reset();
                 toast.success('Meal added successfully');
                 navigate('/dashboard/all-meals')
             }
         }
-        console.log('with image url', res.data);
     };
 
     return (

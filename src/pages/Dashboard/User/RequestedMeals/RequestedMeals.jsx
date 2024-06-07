@@ -1,9 +1,30 @@
-
+import { useEffect, useState } from "react";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
+import useAuth from "../../../../hooks/useAuth";
+import useRequestMeal from "../../../../hooks/useRequestMeal";
 
 const RequestedMeals = () => {
+
+    const { user } = useAuth();
+    const [reqMeals, setReqMeals] = useState();
+    const [requestMeal, loading, refetch] = useRequestMeal();
+
+
+    useEffect(() => {
+        if (user?.email) {
+            const meals = requestMeal.filter(meal => meal.requestUserEmail === user.email);
+            setReqMeals(meals)
+        }
+    }, [user, requestMeal]);
+
+    if (loading) {
+        return <LoadingSpinner />;
+    }
+
+
     return (
         <div>
-            <div className=" w-full p-2 mx-auto sm:p-4 dark:text-gray-800">
+            <div className="w-full p-2 mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md">
@@ -26,30 +47,30 @@ const RequestedMeals = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
-                                <td className="p-3">
-                                    <p>97412378923</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>Microsoft Corporation</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>14 Jan 2022</p>
-                                    <p className="dark:text-gray-600">Friday</p>
-                                </td>
-                                <td className="p-3">
-                                    <p>01 Feb 2022</p>
-                                    <p className="dark:text-gray-600">Tuesday</p>
-                                </td>
-                                <td className="p-3 text-right">
-                                    <p>$15,792</p>
-                                </td>
-                                <td className="p-3 text-right">
-                                    <span className="px-3 py-2 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
-                                        <span> Cancel</span>
-                                    </span>
-                                </td>
-                            </tr>
+                            {reqMeals.map((item, index) => (
+                                <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50">
+                                    <td className="p-3">
+                                        <p>{index + 1}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{item.title}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{item.likes}</p>
+                                    </td>
+                                    <td className="p-3">
+                                        <p>{item.reviews}</p>
+                                    </td>
+                                    <td className="p-3 text-right">
+                                        <p>{item.status}</p>
+                                    </td>
+                                    <td className="p-3 text-right">
+                                        <span className="px-3 py-2 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
+                                            <span>Cancel</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
