@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useRequestMeal from "../../../../hooks/useRequestMeal";
 
 const RequestedMeals = () => {
 
     const { user } = useAuth();
+    const axiosPublic = useAxiosPublic()
     const [reqMeals, setReqMeals] = useState([]);
     const [requestMeal, loading, refetch] = useRequestMeal();
 
@@ -16,17 +20,39 @@ const RequestedMeals = () => {
         }
     }, [user, requestMeal]);
 
+
+    const handleDeleteMeal = (item) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, cancel it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                const res = await axiosPublic.delete(`/requestMeal/${item._id}`);
+                if (res.data.deletedCount > 0) {
+                    refetch();
+                    toast.success('Request Meal has been deleted!');
+                }
+            }
+        });
+    };
+
+
     if (loading) {
         return <LoadingSpinner />;
     }
 
     return (
         <div>
-            <div className="lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800">
-                <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals
-                <span className="bg-pink-500 text-white p-1 ml-2 rounded-full">0{reqMeals.length}</span>
+            <div className="bg-[#F8F7FA] lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800  shadow-lg rounded md:space-y-8">
+                <h2 className="mb-4 text-2xl font-semibold leading-tight ">Request Meals:
+                    <span className="bg-pink-500 text-lg text-white p-1 ml-2 rounded-full">0{reqMeals.length}</span>
                 </h2>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto border  ">
                     <table className="min-w-full text-md">
                         <colgroup>
                             <col />
@@ -42,8 +68,8 @@ const RequestedMeals = () => {
                                 <th className="p-3">TITLE</th>
                                 <th className="p-3">LIKES</th>
                                 <th className="p-3">REVIEW</th>
-                                <th className="p-3 text-right">STATUS</th>
-                                <th className="p-3">CANCEL</th>
+                                <th className="p-3">STATUS</th>
+                                <th className="p-3 ml-4">CANCEL</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,7 +87,7 @@ const RequestedMeals = () => {
                                     <td className="p-3">
                                         <p>{item.reviews}</p>
                                     </td>
-                                    <td className='text-center  py-4 whitespace-nowrap '>
+                                    <td className='whitespace-nowrap '>
                                         <div
                                             className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 
                                                  ${item.status === 'pending' && 'bg-orange-100/60 text-orange-500'} 
@@ -73,9 +99,11 @@ const RequestedMeals = () => {
                                             <h2 className='text-sm font-normal'>{item.status}</h2>
                                         </div>
                                     </td>
-                                    <td className=" text-right">
-                                        <span className="btn px-3 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
-                                            <span>Cancel</span>
+                                    <td className=" py-1 text-right">
+                                        <span
+                                            onClick={() => handleDeleteMeal(item)}
+                                            className="btn px-3 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50 hover:bg-red-700 mr-4">
+                                            Cancel
                                         </span>
                                     </td>
                                 </tr>
