@@ -11,7 +11,7 @@ const ServeMeals = () => {
 
     return (
         <div>
-            <div className="w-full p-2 mx-auto sm:p-4 dark:text-gray-800">
+            <div className="lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals: <span className="bg-primary text-white p-1 rounded-full">0{requestMeal.length}</span></h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md">
@@ -61,7 +61,7 @@ const ServeMeals = () => {
                                         </div>
                                     </td>
                                     <td className="p-3 text-right">
-                                        <span className="px-3 py-2 text-white font-semibold rounded-md bg-fuchsia-600 dark:text-gray-50">
+                                        <span className=" px-3 py-2 text-white font-semibold rounded-md bg-fuchsia-600 dark:text-gray-50">
                                             <span>Serve</span>
                                         </span>
                                     </td>

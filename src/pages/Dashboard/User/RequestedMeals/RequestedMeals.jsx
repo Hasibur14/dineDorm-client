@@ -6,14 +6,13 @@ import useRequestMeal from "../../../../hooks/useRequestMeal";
 const RequestedMeals = () => {
 
     const { user } = useAuth();
-    const [reqMeals, setReqMeals] = useState();
+    const [reqMeals, setReqMeals] = useState([]);
     const [requestMeal, loading, refetch] = useRequestMeal();
-
 
     useEffect(() => {
         if (user?.email) {
-            const meals = requestMeal.filter(meal => meal.requestUserEmail === user.email);
-            setReqMeals(meals)
+            const meals = requestMeal.filter(meal => meal.requestUserEmail === user?.email);
+            setReqMeals(meals);
         }
     }, [user, requestMeal]);
 
@@ -21,11 +20,12 @@ const RequestedMeals = () => {
         return <LoadingSpinner />;
     }
 
-
     return (
         <div>
-            <div className="w-full p-2 mx-auto sm:p-4 dark:text-gray-800">
-                <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals</h2>
+            <div className="lg:w-[1520px] p-2 mx-auto sm:p-4 dark:text-gray-800">
+                <h2 className="mb-4 text-2xl font-semibold leading-tight">Request Meals
+                <span className="bg-pink-500 text-white p-1 ml-2 rounded-full">0{reqMeals.length}</span>
+                </h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md">
                         <colgroup>
@@ -61,11 +61,20 @@ const RequestedMeals = () => {
                                     <td className="p-3">
                                         <p>{item.reviews}</p>
                                     </td>
-                                    <td className="p-3 text-right">
-                                        <p>{item.status}</p>
+                                    <td className='text-center  py-4 whitespace-nowrap '>
+                                        <div
+                                            className={`inline-flex items-center px-3 py-1 rounded-full gap-x-2 
+                                                 ${item.status === 'pending' && 'bg-orange-100/60 text-orange-500'} 
+                                                 ${item.status === 'delivery' && 'bg-emerald-100/60 text-emerald-500'}`}>
+
+                                            <span className={`h-1.5 w-1.5 rounded-full 
+                                                ${item.status === 'pending' && 'bg-orange-500'}
+                                                ${item.status === 'delivery' && 'bg-green-500'}`}></span>
+                                            <h2 className='text-sm font-normal'>{item.status}</h2>
+                                        </div>
                                     </td>
-                                    <td className="p-3 text-right">
-                                        <span className="px-3 py-2 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
+                                    <td className=" text-right">
+                                        <span className="btn px-3 text-white font-semibold rounded-md bg-rose-600 dark:text-gray-50">
                                             <span>Cancel</span>
                                         </span>
                                     </td>
