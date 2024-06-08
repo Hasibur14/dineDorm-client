@@ -13,10 +13,12 @@ const Home = () => {
                     Home || DineDorm
                 </title>
             </Helmet>
-            <Banner></Banner>
-            <MealCategory></MealCategory>
-            <MemberShip></MemberShip>
-            <Testimonial></Testimonial>
+            <div className="space-y-24">
+                <Banner></Banner>
+                <MealCategory></MealCategory>
+                <MemberShip></MemberShip>
+                <Testimonial></Testimonial>
+            </div>
         </div>
     );
 };

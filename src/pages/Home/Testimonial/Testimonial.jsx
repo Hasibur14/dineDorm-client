@@ -21,11 +21,7 @@ const Testimonial = () => {
     // });
 
     return (
-        <div className="mb-16">
-            <SectionTitle
-                subHeading="Testimonial"
-                Heading="Client Says"
-            ></SectionTitle>
+        <div className="">
             <div
                 id="my-id"
                 className=" min-h-[70vh] bg-blend-darken py-8 items-center bg-fixed"
@@ -33,6 +29,10 @@ const Testimonial = () => {
                     backgroundImage: `url(${imageBg})`,
                 }}
             >
+                <SectionTitle
+                    subHeading="Testimonial"
+                    Heading="Client Says"
+                ></SectionTitle>
                 <div className=" mx-auto text-white md:w-6/12 lg:w-4/12 text-center my-5">
                 </div>
                 <Swiper

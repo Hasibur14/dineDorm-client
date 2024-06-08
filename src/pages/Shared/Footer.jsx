@@ -1,13 +1,15 @@
 import { CiLocationArrow1 } from 'react-icons/ci';
 import { FaFacebook, FaLinkedin, FaTwitterSquare } from 'react-icons/fa';
 import title from '../../assets/titleImg (2).png';
+import Container from '../../components/Container/Container';
 
 const Footer = () => {
     return (
-        <div>
-            <footer className="bg-black ">
-                <div className=" footer p-8 text-white mx-32 container">
-                    <aside className="lg:space-y-3 ml-10 md:ml-10  ">
+        <div className='bg-black'>
+          <Container>
+          <footer>
+                <div className=" footer p-8 text-white mt-24">
+                    <aside className="lg:space-y-3">
                         <div className="flex">
                             <img className="w-28 h-16" src={title} alt="dine dorm" />
                         </div>
@@ -58,7 +60,7 @@ const Footer = () => {
                 </div>
             </footer>
 
-
+          </Container>
         </div>
     );
 };

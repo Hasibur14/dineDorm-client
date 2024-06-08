@@ -1,20 +1,25 @@
 import PropTypes from 'prop-types';
-import { BiSolidMessageSquareDetail } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 
 const MyTabs = ({ item }) => {
     return (
         <div>
-            <div className="flex max-w-3xl overflow-hidden bg-neutral rounded-lg shadow-lg dark:bg-gray-800 hover:border border-red-500">
-                <div className="w-2/5 bg-cover" style={{ backgroundImage: `url(${item.image})` }}></div>
-
-                <div className="w-2/3 p-4 md:p-4">
-                    <h1 className="text-xl font-bold text-gray-800 dark:text-white"> {item.title}</h1>
-                    <p className="mt-2  text-gray-600 dark:text-gray-400">
-                    {item.description.substring(0, 40) + '...'}
+            <div className="flex h-44 max-w-3xl gap-4 overflow-hidden bg-neutral rounded shadow-lg  dark:bg-gray-800 hover:border border-red-700 ">
+                <div className="relative w-6/12 bg-cover transform transition duration-500 hover:scale-110" style={{ backgroundImage: `url(${item.image})` }}>
+                    <div className="absolute top-0 w-[70px] h-[70px] p-6 flex flex-col items-center justify-center  bg-gradient-to-tr  from-primary to-[#921b42]  ">
+                        <p className="text-md text-white font-bold">Price</p>
+                        <p className="text-xl text-white font-bold">
+                            ${item.price}
                         </p>
-                    <div className="flex mt-2 item-center">
+                    </div>
+                </div>
+                <div className="p-2 space-y-2 w-6/12 ">
+                    <h1 className="text-xl font-bold text-gray-800 dark:text-white">{item.title.substring(0, 25) + '...'}</h1>
+                    <p className="mt-2  text-gray-600 dark:text-gray-400">
+                        {item.description.substring(0, 60) + '...'}
+                    </p>
+                    <div className="flex py-1 item-center">
 
                         {[...Array(5)].map((_, index) => (
                             <svg
@@ -26,14 +31,13 @@ const MyTabs = ({ item }) => {
                             </svg>
                         ))}
                     </div>
-
-                    <h1 className="text-md font-bold text-gray-700 dark:text-gray-200 md:text-xl">Price: ${item.price}</h1>
-
-                    <Link to={`/meal/${item._id}`}
-                        className="btn text-xs font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-full w-full from-[#910404] to-[#DC3545] mt-2">
-                            <BiSolidMessageSquareDetail className='text-xl' />
-                        Details
-                    </Link>
+                    <div className=''>
+                        <Link to={`/meal/${item._id}`}
+                            className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-lg w-full px-8 py-2 from-[#910404] to-[#DC3545] text-sm">
+                            {/* <BiSolidMessageSquareDetail className='text-xl' /> */}
+                            Details
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

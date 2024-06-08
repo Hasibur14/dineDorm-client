@@ -36,6 +36,7 @@ const MealDetails = () => {
         day: 'numeric',
     });
 
+
     const closeModal = () => {
         setIsOpen(false);
     };
