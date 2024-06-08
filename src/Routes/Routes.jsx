@@ -18,6 +18,8 @@ import MyReviews from "../pages/Dashboard/User/MyReviews/MyReviews";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
 import RequestedMeals from "../pages/Dashboard/User/RequestedMeals/RequestedMeals";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+
+import Checkout from "../pages/Home/Checkout/Checkout";
 import Home from "../pages/Home/Home/Home";
 import JoinUs from "../pages/JoinUs/JoinUs";
 import MealDetails from "../pages/MealDetails/MealDetails";
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
             {
                 path: '/meal/:id',
                 element: <MealDetails></MealDetails>
+            },
+            {
+                path: '/checkout/:id',
+                element: <Checkout></Checkout>
             },
             {
                 path: '/signIn',
