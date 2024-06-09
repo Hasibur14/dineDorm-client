@@ -1,26 +1,29 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { Helmet } from "react-helmet-async";
-import toast from "react-hot-toast";
-import { AiFillLike } from "react-icons/ai";
-import { CiCalendarDate } from "react-icons/ci";
-import { FaRegComment } from "react-icons/fa";
-import { FaArrowRightLong } from "react-icons/fa6";
-import { TiArrowBack } from "react-icons/ti";
-import { VscGitPullRequestGoToChanges } from "react-icons/vsc";
-import { Link, useParams } from "react-router-dom";
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import toast from 'react-hot-toast';
+import { AiFillLike } from 'react-icons/ai';
+import { CiCalendarDate } from 'react-icons/ci';
+import { FaRegComment } from 'react-icons/fa';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { TiArrowBack } from 'react-icons/ti';
+import { VscGitPullRequestGoToChanges } from 'react-icons/vsc';
+import { Link, useParams } from 'react-router-dom';
 import bannerImg from '../../assets/banner_101.jpg';
-import BannerTitle from "../../components/BannerTitle/BannerTitle";
-import Container from "../../components/Container/Container";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import useAuth from "../../hooks/useAuth";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
-import UserRequestedMeal from "../UserRequestedMeal/UserRequestedMeal";
+import BannerTitle from '../../components/BannerTitle/BannerTitle';
+import Container from '../../components/Container/Container';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import ReviewModal from '../../components/ReviewModal/ReviewModal';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import UserRequestedMeal from '../UserRequestedMeal/UserRequestedMeal';
+
 
 const MealDetails = () => {
     const { id } = useParams();
     const axiosPublic = useAxiosPublic();
     const [isOpen, setIsOpen] = useState(false);
+    const [isReviewOpen, setIsReviewOpen] = useState(false); 
     const [selectedMeal, setSelectedMeal] = useState(null);
     const { user } = useAuth();
 
@@ -69,6 +72,14 @@ const MealDetails = () => {
     const openModal = (meal) => {
         setSelectedMeal(meal);
         setIsOpen(true);
+    };
+
+    const closeReviewModal = () => {
+        setIsReviewOpen(false);
+    };
+
+    const openReviewModal = () => {
+        setIsReviewOpen(true);
     };
 
     if (isLoading) return <LoadingSpinner />;
@@ -151,9 +162,11 @@ const MealDetails = () => {
                                         className="text-2xl text-blue-500 hover:text-red-600 mr-2" />
                                     <h5 className="text-xl">{meal.likes}</h5>
                                 </div>
-                                <div className="flex ml-10">
+                                <div 
+                                  onClick={openReviewModal}
+                                className="flex ml-10 cursor-pointer">
                                     <FaRegComment className="text-xl text-red-600 mr-1" />
-                                    <a href="">Review</a>
+                                    <p>Review</p>
                                 </div>
                             </div>
                             <div className="lg:mr-24 text-lg flex">
@@ -172,6 +185,14 @@ const MealDetails = () => {
                     meal={selectedMeal}
                 />
             )}
+
+            <ReviewModal
+                isOpen={isReviewOpen}
+                closeModal={closeReviewModal}
+                mealId={id}
+                refetch={refetch}
+                meal={meal}
+            />
         </div>
     );
 };

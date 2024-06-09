@@ -16,14 +16,14 @@ const PaymentHistory = () => {
     });
 
     return (
-        <div>
+        <div className="lg:w-[1530px] shadow-2xl border p-4">
             <Helmet>
                 <title>Payment History || DineDorm</title>
             </Helmet>
             <h2 className="mb-4 text-2xl font-semibold leading-tight ">Total Payment:
                 <span className="bg-pink-500 text-lg text-white p-1 ml-2 rounded-full">0{payments.length}</span>
             </h2>
-            <section className="container px-4 mx-auto lg:w-[1530px]">
+            <section className="container px-4 mx-auto ">
                 <div className="flex flex-col">
                     <div className="-mx-4 -my-2 overflow-x-auto-lg:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

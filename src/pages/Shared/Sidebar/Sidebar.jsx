@@ -63,7 +63,7 @@ const Sidebar = () => {
                                     <FaCodePullRequest />
                                     <li>All Meals</li>
                                 </NavLink>
-                                <NavLink to="/dashboard/all-reviews" className={iconStyle}>
+                                <NavLink to="/dashboard/all-review" className={iconStyle}>
                                     <MdOutlineRateReview className="text-2xl" />
                                     <li>All Reviews </li>
                                 </NavLink>
