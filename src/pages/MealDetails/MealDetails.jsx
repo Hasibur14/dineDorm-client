@@ -1,7 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { BiLike } from "react-icons/bi";
+import { AiFillLike } from "react-icons/ai";
+import { CiCalendarDate } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TiArrowBack } from "react-icons/ti";
@@ -61,10 +62,13 @@ const MealDetails = () => {
                 />
             </div>
             <Container>
-                <div className="font-heading lg:flex justify-between my-16 border md:px-8 py-6 gap-16">
-                    <div className="justify-center lg:w-[30%] space-y-3">
-                        <h4 className="text-xl font-semibold">{meal.category}</h4>
-                        <h2 className="text-4xl font-bold">{meal.title}</h2>
+                <div className="font-heading lg:flex justify-between my-16 border shadow-2xl bg-base-100 md:px-8 py-6 gap-16">
+                    <div className="justify-center lg:w-[35%] space-y-3">
+                        <Link to='/' className="max-w-36 border hover:bg-red-500 hover:text-white px-3 py-2 flex items-center">
+                            <TiArrowBack className="text-2xl mr-2" />Back Home
+                        </Link>
+                        <h4 className="text-xl text-secondary font-semibold">{meal.category}</h4>
+                        <h2 className="text-2xl font-bold">{meal.title}</h2>
                         <p>{meal.description}</p>
                         <h5><span className="font-bold">Distributor: </span> Hasib</h5>
                         <div>
@@ -76,11 +80,8 @@ const MealDetails = () => {
                             </ul>
                         </div>
                         <div className="md:flex gap-16">
-                            <Link to='/' className="button px-3 py-2 flex items-center">
-                                <TiArrowBack className="text-2xl mr-2" />Back Home
-                            </Link>
                             <button
-                                onClick={() => openModal(meal)} 
+                                onClick={() => openModal(meal)}
                                 className="bg-gradient-to-tl hover:bg-gradient-to-tr rounded-md from-[#910404] to-[#DC3545] text-white px-3 py-2 flex items-center">
                                 Request <VscGitPullRequestGoToChanges className="text-xl ml-2" />
                             </button>
@@ -116,19 +117,21 @@ const MealDetails = () => {
                             <h4 className="md:text-4xl ml-8 font-bold">{meal.rating}</h4>
                         </div>
                     </div>
-                    <div className="w-[56%]">
-                        <img className="w-full h-[300px] lg:h-[500px] rounded-lg" src={meal.image} alt={meal.title} />
-                        <div className="flex justify-between mt-4">
+                    <div className="lg:w-[60%]">
+                        <img className="w-full h-[300px] md:h-[570px] rounded" src={meal.image} alt={meal.title} />
+                        <div className="flex justify-between mt-3">
                             <div className="flex">
-                                <div className="flex ml-10 bg-neutral-200 rounded p-1">
-                                    <BiLike className="text-3xl hover:text-red-600 mr-2" />
+                                <div className="flex ml-8">
+                                    <AiFillLike  className="text-2xl text-blue-500 hover:text-red-600 mr-2" />
                                     <h5 className="text-xl">{meal.likes}</h5>
                                 </div>
-                                <div className="flex ml-10 bg-neutral-200 rounded p-1">
-                                    <FaRegComment className="text-3xl hover:text-red-600" />
+                                <div className="flex ml-10">
+                                    <FaRegComment className="text-xl text-red-600 mr-1" />
+                               <a href="">Review</a>
                                 </div>
                             </div>
-                            <div className="lg:mr-24 text-lg">
+                            <div className="lg:mr-24 text-lg flex">
+                                <CiCalendarDate className="text-red-600 text-2xl mr-1" />
                                 {formattedDate}
                             </div>
                         </div>
@@ -140,7 +143,7 @@ const MealDetails = () => {
                 <UserRequestedMeal
                     closeModal={closeModal}
                     isOpen={isOpen}
-                    meal={selectedMeal} 
+                    meal={selectedMeal}
                 />
             )}
         </div>

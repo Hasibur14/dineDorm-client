@@ -20,7 +20,7 @@ const PaymentHistory = () => {
             <Helmet>
                 <title>Payment History || DineDorm</title>
             </Helmet>
-            <h2 className="mb-4 text-2xl font-semibold leading-tight ">Request Meals:
+            <h2 className="mb-4 text-2xl font-semibold leading-tight ">Total Payment:
                 <span className="bg-pink-500 text-lg text-white p-1 ml-2 rounded-full">0{payments.length}</span>
             </h2>
             <section className="container px-4 mx-auto lg:w-[1530px]">
@@ -31,25 +31,25 @@ const PaymentHistory = () => {
                                 <table className="min-w-full  divide-y divide-gray-200 dark:divide-gray-700">
                                     <thead className="bg-secondary uppercase text-white" >
                                         <tr>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 # No
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 package
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 Price
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 Status
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 Transaction Id
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 Date
                                             </th>
-                                            <th scope="col" className="px-4 py-3.5 text-lg text-left rtl:text-right text-white font-semibold">
+                                            <th scope="col" className="px-4 py-3.5 text-md text-left rtl:text-right text-white font-semibold">
                                                 Action
                                             </th>
 
@@ -58,20 +58,20 @@ const PaymentHistory = () => {
                                     <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                                         {payments.map((item, index) => (
                                             <tr key={item._id} className="hover:bg-red-100">
-                                                <td className="px-4 py-4 text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">{index + 1}</td>
-                                                <td className="px-4 py-4 text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">{item.packageName}</td>
-                                                <td className="px-4 py-4 text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">$ {item.price}</td>
-                                                <td className="px-4 py-4 text-lg font-medium text-gray-700 whitespace-nowrap">
+                                                <td className="px-4 py-4 text-md text-gray-500 dark:text-gray-300 whitespace-nowrap">{index + 1}</td>
+                                                <td className="px-4 py-4 text-md text-gray-500 dark:text-gray-300 whitespace-nowrap">{item.packageName}</td>
+                                                <td className="px-4 py-4 text-md text-gray-500 dark:text-gray-300 whitespace-nowrap">$ {item.price}</td>
+                                                <td className="px-4 py-4 text-md font-medium text-gray-700 whitespace-nowrap">
                                                     <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60 dark:bg-gray-800">
                                                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                             <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                                                         </svg>
-                                                        <h2 className="text-lg">{item.status}</h2>
+                                                        <h2 className="text-md">{item.status}</h2>
                                                     </div>
                                                 </td>
-                                                <td className="px-4 py-4 text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">{item.transactionId}</td>
-                                                <td className="px-4 py-4 text-lg text-gray-500 dark:text-gray-300 whitespace-nowrap">{new Date(item.date).toLocaleDateString()}</td>
-                                                <td className="px-4 py-4 text-lg whitespace-nowrap">
+                                                <td className="px-4 py-4 text-md text-gray-500 dark:text-gray-300 whitespace-nowrap">{item.transactionId}</td>
+                                                <td className="px-4 py-4 text-md text-gray-500 dark:text-gray-300 whitespace-nowrap">{new Date(item.date).toLocaleDateString()}</td>
+                                                <td className="px-4 py-4 text-md whitespace-nowrap">
                                                     <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
                                                         Download
                                                     </button>
