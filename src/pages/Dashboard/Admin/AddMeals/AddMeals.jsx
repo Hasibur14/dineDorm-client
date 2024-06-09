@@ -36,7 +36,7 @@ const AddMeals = () => {
                 rating: parseFloat(data.rating),
                 postTime: new Date(data.postTime).toISOString(),
                 reviews: data.reviews.split(','),
-                likes: data.likes,
+                likes: parseFloat(data.likes),
                 admin: user?.displayName,
                 adminEmail: user?.email,
             };
@@ -53,7 +53,7 @@ const AddMeals = () => {
     return (
         <div
             className="lg:w-[1520px] place-items-center bg-cover bg-neutral-100 bg-no-repeat rounded-md py-6 bg-blend-overlay shadow-2xl"
-            // style={{ backgroundImage: `url(${bannerImg})` }}
+        // style={{ backgroundImage: `url(${bannerImg})` }}
         >
             <div className="max-w-7xl mx-auto p-4">
                 <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 lg:grid-cols-2">

@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import toast from "react-hot-toast";
 import { AiFillLike } from "react-icons/ai";
 import { CiCalendarDate } from "react-icons/ci";
 import { FaRegComment } from "react-icons/fa";
@@ -12,31 +13,54 @@ import bannerImg from '../../assets/banner_101.jpg';
 import BannerTitle from "../../components/BannerTitle/BannerTitle";
 import Container from "../../components/Container/Container";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import UserRequestedMeal from "../UserRequestedMeal/UserRequestedMeal";
 
-
 const MealDetails = () => {
     const { id } = useParams();
-    const axiosCommon = useAxiosPublic();
+    const axiosPublic = useAxiosPublic();
     const [isOpen, setIsOpen] = useState(false);
     const [selectedMeal, setSelectedMeal] = useState(null);
+    const { user } = useAuth();
 
-    const { data: meal = {}, isLoading } = useQuery({
+    const { data: meal = {}, isLoading, refetch } = useQuery({
         queryKey: ['meal', id],
         queryFn: async () => {
-            const { data } = await axiosCommon.get(`/meal/${id}`);
+            const { data } = await axiosPublic.get(`/meal/${id}`);
             return data;
         },
     });
 
-    //date formate
+    const { mutate } = useMutation({
+        mutationKey: 'likeMeal',
+        mutationFn: async (mealId) => {
+            const response = await axiosPublic.post(`/meal/${mealId}/like`, { userId: user.id });
+            return response.data;
+        },
+        onSuccess: (data) => {
+            toast.success("Like successful:", data);
+            setSelectedMeal(prevMeal => ({
+                ...prevMeal,
+                likes: data.likes
+            }));
+            refetch();
+        },
+    });
+
+    const handleLike = async () => {
+        try {
+            await mutate(meal._id);
+        } catch (error) {
+            console.error("Error liking meal:", error);
+        }
+    };
+
     const formattedDate = new Date(meal.postTime).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
-
 
     const closeModal = () => {
         setIsOpen(false);
@@ -70,7 +94,7 @@ const MealDetails = () => {
                         <h4 className="text-xl text-secondary font-semibold">{meal.category}</h4>
                         <h2 className="text-2xl font-bold">{meal.title}</h2>
                         <p>{meal.description}</p>
-                        <h5><span className="font-bold">Distributor: </span> Hasib</h5>
+                        <h5><span className="font-bold">Distributor: </span> {meal.admin}</h5>
                         <div>
                             <span className="font-bold">Ingredients :</span>
                             <ul className="list-disc lg:ml-8">
@@ -122,12 +146,14 @@ const MealDetails = () => {
                         <div className="flex justify-between mt-3">
                             <div className="flex">
                                 <div className="flex ml-8">
-                                    <AiFillLike  className="text-2xl text-blue-500 hover:text-red-600 mr-2" />
+                                    <AiFillLike
+                                        onClick={handleLike}
+                                        className="text-2xl text-blue-500 hover:text-red-600 mr-2" />
                                     <h5 className="text-xl">{meal.likes}</h5>
                                 </div>
                                 <div className="flex ml-10">
                                     <FaRegComment className="text-xl text-red-600 mr-1" />
-                               <a href="">Review</a>
+                                    <a href="">Review</a>
                                 </div>
                             </div>
                             <div className="lg:mr-24 text-lg flex">
