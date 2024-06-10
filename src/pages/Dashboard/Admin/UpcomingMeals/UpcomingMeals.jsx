@@ -1,16 +1,40 @@
-import { RiDeleteBinLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import toast from 'react-hot-toast';
+import LoadingSpinner from '../../../../components/LoadingSpinner';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useUpcomingMeal from "../../../../hooks/useUpcomingMeal";
 
 const UpcomingMeals = () => {
+    const [upcomingMeal, loading, refetch] = useUpcomingMeal();
+    const axiosSecure = useAxiosSecure();
 
-    const [upcomingMeal, loading, refetch] = useUpcomingMeal()
+    const handlePostMeal = async (mealId) => {
+        try {
+            const response = await axiosSecure.post('/moveMeal', { mealId });
 
+            if (response.status === 200) {
+                toast.success('Meal posted successfully');
+                refetch();  // Refresh the list after successful operation
+            }
+        } catch (error) {
+            console.error('Error moving meal:', error);
+            toast.error('Failed to move meal');
+        }
+    };
+
+    if (loading) return <LoadingSpinner />;
 
     return (
         <div>
-            <div className="p-2 lg:w-[1520px] shadow-2xl rounded  sm:p-4 dark:text-gray-800 border-2">
-                <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Upcoming Meals: {upcomingMeal.length}</h2>
+            <div className="p-2 lg:w-[1520px] shadow-2xl rounded sm:p-4 dark:text-gray-800 border-2">
+                <div className="text-center justify-between flex ">
+                    <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Upcoming Meals: {upcomingMeal.length}</h2>
+                    <div className='flex'>
+                        <h4 className='text-xl font bold'>Add Upcoming meal</h4>
+                        <button className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#9e4444] to-[#e94051] text-sm">
+                            Add Meal
+                        </button>
+                    </div>
+                </div>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md border">
                         <colgroup>
@@ -27,14 +51,13 @@ const UpcomingMeals = () => {
                                 <th className="p-3">TITLE</th>
                                 <th className="p-3">LIKES</th>
                                 <th className="p-3">Review</th>
-                                <th className="p-3">DELETE</th>
-                                <th className="p-3 ">Add_Collection</th>
+                                <th className="p-3">Price</th>
+                                <th className="p-3">Add_Collection</th>
                             </tr>
                         </thead>
                         <tbody>
                             {upcomingMeal.map((item, index) => (
-                                <tr key={item._id}
-                                    className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 hover:bg-red-50">
+                                <tr key={item._id} className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 hover:bg-red-50">
                                     <td className="p-3">
                                         <p>{index + 1}</p>
                                     </td>
@@ -48,26 +71,19 @@ const UpcomingMeals = () => {
                                         <p>{item.reviews ? item.reviews.length : 0}</p>
                                     </td>
                                     <td className="p-3">
-                                        <RiDeleteBinLine
-                                            // onClick={() => handleDeleteReview(item)}
-                                            className="text-3xl p-1 text-white bg-red-600 hover:scale-110 rounded" />
+                                        <p>{item.price}</p>
                                     </td>
-                                    <td className="p-1">
-                                        <Link to={`/meal/${item._id}`}
-                                            className="w-24 py-2 px-4 text-white font-semibold rounded bg-cyan-500 dark:text-gray-50 hover:bg-orange-700 lg:mr-4">
-                                            <span>Post Meal </span>
-                                        </Link>
+                                    <td className="p-1.5">
+                                        <button
+                                            onClick={() => handlePostMeal(item._id)}
+                                            className="w-28 py-2 px-4 text-white font-semibold rounded bg-cyan-500 dark:text-gray-50 hover:bg-orange-700 ">
+                                            Post Meal
+                                        </button>
                                     </td>
-
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                </div>
-                <div className="text-center justify-end flex my-4 mr-10">
-                    <button className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#9e4444] to-[#e94051] text-sm">
-                        <h4>Add Meal</h4>
-                    </button>
                 </div>
             </div>
         </div>

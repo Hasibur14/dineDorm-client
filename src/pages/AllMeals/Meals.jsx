@@ -84,7 +84,26 @@ const Meals = () => {
                     {
                         meals.map(meal => (
                             <div key={meal._id} className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
-                                <img className="object-cover p-4 rounded-lg w-full h-64" src={meal.image} alt={meal.title} />
+                                <div className="relative w-full rounded-lg overflow-hidden">
+                                    <img
+                                        className="object-cover w-full h-[300px]"
+                                        src={meal.image}
+                                        alt="meal Image"
+                                    />
+                                    {/* New right side design element */}
+                                    <div
+                                        className="absolute top-0 right-0 w-16 h-16 bg-blue-500 opacity-70"
+                                        style={{
+                                            clipPath: "polygon(0 0, 100% 0, 100% 100%, 50% 50%)",
+                                        }}
+                                    ></div>
+                                    {/* New "Coming soon" label */}
+                                    <div className="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 rounded-full">
+                                        <p className="text-base font-semibold">
+                                         Price ${meal.price}
+                                        </p>
+                                    </div>
+                                </div>
 
                                 <div className="p-6">
                                     <div>

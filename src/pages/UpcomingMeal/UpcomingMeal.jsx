@@ -37,7 +37,7 @@ const UpcomingMeal = () => {
                                             <div className="absolute top-0 w-[70px] h-[70px] p-6 flex flex-col items-center justify-center  bg-gradient-to-tr  from-primary to-[#921b42]  ">
                                                 <p className="text-2xl text-white font-bold">Price</p>
                                                 <p className="text-base text-white font-bold">
-                                                   ${item.price}
+                                                    ${item.price}
                                                 </p>
                                             </div>
                                             {/* for right side border style */}
@@ -50,7 +50,7 @@ const UpcomingMeal = () => {
                                             ></div>
 
                                             <h4 className="absolute top-16 font-semibold -right-[32px] text-lg text-white -rotate-90 ">
-                                               Coming soon
+                                                Coming soon
                                             </h4>
                                         </div>
                                         <h2 className="mb-1 text-xl font-semibold">{item.title}</h2>
