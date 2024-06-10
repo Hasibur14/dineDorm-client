@@ -24,6 +24,7 @@ import Checkout from "../pages/Home/Checkout/Checkout";
 import Home from "../pages/Home/Home/Home";
 import JoinUs from "../pages/JoinUs/JoinUs";
 import MealDetails from "../pages/MealDetails/MealDetails";
+import PrivateRoute from "./PrivetRoute";
 
 
 export const router = createBrowserRouter([
@@ -50,7 +51,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/meal/:id',
-                element: <MealDetails></MealDetails>
+                element: <PrivateRoute><MealDetails></MealDetails></PrivateRoute>
             },
             {
                 path: '/checkout/:id',
