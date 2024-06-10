@@ -19,6 +19,7 @@ import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistor
 import RequestedMeals from "../pages/Dashboard/User/RequestedMeals/RequestedMeals";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
+import ReviewEdit from "../pages/Dashboard/User/MyReviews/ReviewEdit";
 import Checkout from "../pages/Home/Checkout/Checkout";
 import Home from "../pages/Home/Home/Home";
 import JoinUs from "../pages/JoinUs/JoinUs";
@@ -117,6 +118,11 @@ export const router = createBrowserRouter([
             {
                 path: 'my-reviews',
                 element: <MyReviews />
+            },
+            {
+                path: 'reviews/:id',
+                element: <ReviewEdit></ReviewEdit>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/reviews/${params.id}`)
             },
             {
                 path: 'payment-history',

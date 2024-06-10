@@ -69,7 +69,7 @@ const ReviewModal = ({ closeModal, isOpen, meal }) => {
                                     as='h3'
                                     className='text-lg font-medium text-center leading-6 text-gray-900'
                                 >
-                                    Meal Request
+                                  Please Review below
                                 </DialogTitle>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <div className="form-control">

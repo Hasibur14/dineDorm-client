@@ -11,7 +11,7 @@ const AllReviews = () => {
     const axiosSecure = useAxiosSecure();
    const [reviews, loading, refetch] = useReview()
 
-    const handleDeleteMeal = (review) => {
+    const handleDeleteReview = (review) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -77,7 +77,7 @@ const AllReviews = () => {
                                     </td>
                                     <td className="p-3">
                                         <RiDeleteBinLine
-                                            onClick={() => handleDeleteMeal(review)}
+                                            onClick={() => handleDeleteReview(review)}
                                             className="text-3xl p-1 text-white bg-red-600 hover:scale-110 rounded" />
                                     </td>
                                     <td className="p-1">
