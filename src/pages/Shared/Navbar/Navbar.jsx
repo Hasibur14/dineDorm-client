@@ -55,7 +55,7 @@ const Navbar = () => {
             <NavLink onClick={() => setIsMenuTrue(false)} to="/meals" className={navLinkStyles}>
                 <li>All Meals</li>
             </NavLink>
-            <NavLink onClick={() => setIsMenuTrue(false)} to="/upcomingMeals" className={navLinkStyles}>
+            <NavLink onClick={() => setIsMenuTrue(false)} to="/upcoming-meal" className={navLinkStyles}>
                 <li>Upcoming Meals</li>
             </NavLink>
             <NavLink onClick={() => setIsMenuTrue(false)} to="/about" className={navLinkStyles}>

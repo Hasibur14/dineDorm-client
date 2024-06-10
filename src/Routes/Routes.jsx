@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layout/DashboardLayout";
 import Main from "../Layout/Main";
+import About from "../pages/About/About";
 import Meals from "../pages/AllMeals/Meals";
 import SignIn from "../pages/Authentication/SignIn/SignIn";
 import SignUp from "../pages/Authentication/SignUp/SignUp";
@@ -15,16 +16,19 @@ import UpcomingMeals from "../pages/Dashboard/Admin/UpcomingMeals/UpcomingMeals"
 import UpdateMeal from "../pages/Dashboard/Admin/UpdateMeal/UpdateMeal";
 import MyProfile from "../pages/Dashboard/User/MyProfile/MyProfile";
 import MyReviews from "../pages/Dashboard/User/MyReviews/MyReviews";
+import ReviewEdit from "../pages/Dashboard/User/MyReviews/ReviewEdit";
 import PaymentHistory from "../pages/Dashboard/User/PaymentHistory/PaymentHistory";
 import RequestedMeals from "../pages/Dashboard/User/RequestedMeals/RequestedMeals";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
-
-import ReviewEdit from "../pages/Dashboard/User/MyReviews/ReviewEdit";
 import Checkout from "../pages/Home/Checkout/Checkout";
 import Home from "../pages/Home/Home/Home";
 import JoinUs from "../pages/JoinUs/JoinUs";
 import MealDetails from "../pages/MealDetails/MealDetails";
+import UpcomingMeal from "../pages/UpcomingMeal/UpcomingMeal";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivetRoute";
+
+
 
 
 export const router = createBrowserRouter([
@@ -42,6 +46,14 @@ export const router = createBrowserRouter([
                 element: <Meals></Meals>
             },
             {
+                path: '/upcoming-meal',
+                element: <UpcomingMeal></UpcomingMeal>
+            },
+            {
+                path: '/about',
+                element: <About></About>
+            },
+            {
                 path: '/joinUs',
                 element: <JoinUs></JoinUs>
             },
@@ -55,7 +67,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                element: <Checkout></Checkout>
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
                 path: '/signIn',
@@ -69,65 +81,65 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
 
             // Admin Routes
             {
                 path: 'admin-profile',
-                element: <AdminProfile></AdminProfile>
+                element: <AdminRoute> <AdminProfile /></AdminRoute>
             },
             {
                 path: 'manage-user',
-                element: <ManageUser />
+                element: <AdminRoute><ManageUser /></AdminRoute>
             },
             {
                 path: 'add-meals',
-                element: <AddMeals />
+                element: <AdminRoute><AddMeals /></AdminRoute>
             },
             {
                 path: 'all-meals',
-                element: <AllMeals />
+                element: <AdminRoute> <AllMeals /></AdminRoute>
             },
             {
                 path: 'all-review',
-                element: <AllReviews />
+                element: <AdminRoute><AllReviews /></AdminRoute>
             },
             {
                 path: 'serve-meals',
-                element: <ServeMeals />
+                element: <AdminRoute><ServeMeals /></AdminRoute>
             },
             {
                 path: 'upcoming-meals',
-                element: <UpcomingMeals />
+                element: <AdminRoute> <UpcomingMeals /></AdminRoute>
             },
             {
                 path: 'meal/:id',
-                element: <UpdateMeal></UpdateMeal>,
+                element: <AdminRoute><UpdateMeal /></AdminRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/meal/${params.id}`)
             },
 
             // User Routes
             {
                 path: 'profile',
-                element: <MyProfile />
+                element: <PrivateRoute> <MyProfile /></PrivateRoute>
             },
             {
                 path: 'requested-meals',
-                element: <RequestedMeals />
+                element: <PrivateRoute> <RequestedMeals /></PrivateRoute>
             },
             {
                 path: 'my-reviews',
-                element: <MyReviews />
+                element: <PrivateRoute><MyReviews /></PrivateRoute>
             },
             {
                 path: 'reviews/:id',
-                element: <ReviewEdit></ReviewEdit>,
+                element: <PrivateRoute><ReviewEdit /></PrivateRoute>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/reviews/${params.id}`)
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory />
+                element: <PrivateRoute><PaymentHistory /></PrivateRoute>
             },
         ]
     }
