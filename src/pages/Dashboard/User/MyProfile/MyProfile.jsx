@@ -44,7 +44,7 @@ const MyProfile = () => {
                             />
                         </a>
                         {userBadge && ( // Check if userBadge is available
-                            <p className='p-2 px-4 text-xs text-white bg-pink-500 rounded-full'>
+                            <p className='p-1 px-4 text- text-white bg-pink-500 rounded-full'>
                                 <span className="">{userBadge}</span>
                             </p>
                         )}

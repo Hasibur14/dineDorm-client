@@ -58,7 +58,7 @@ const Testimonial = () => {
                                         <div className="bg-white md:w-3/4 mx-auto relative rounded-xl p-5">
                                             <FaQuoteLeft className="absolute text-[#F53F7B]"></FaQuoteLeft>
                                             <p className="ml-6 text-lg text-center break-all font-title">
-                                                fff
+                                            Developing a Hostel Management System that focuses on meal services in a university hostel setting can greatly enhance the efficiency and satisfaction of students and staff.
                                             </p>
                                             <FaQuoteRight className="relative text-[#F53F7B] left-full"></FaQuoteRight>
                                         </div>
