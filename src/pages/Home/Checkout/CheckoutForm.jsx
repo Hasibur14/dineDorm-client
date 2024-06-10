@@ -96,7 +96,7 @@ const CheckoutForm = ({ packages, refetch, loading }) => {
                     transactionId: paymentIntent.id,
                     date: new Date(),
                     status: 'paid',
-                    packageName: packages.title, // Assuming packages contain cartIds
+                    badge: packages.title, // Assuming packages contain cartIds
                 };
 
                 try {

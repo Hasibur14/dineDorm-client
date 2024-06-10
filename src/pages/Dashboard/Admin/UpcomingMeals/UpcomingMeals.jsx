@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import LoadingSpinner from '../../../../components/LoadingSpinner';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useUpcomingMeal from "../../../../hooks/useUpcomingMeal";
+import AddUpcomingMeal from './AddUpcomingMeal';
 
 const UpcomingMeals = () => {
+
     const [upcomingMeal, loading, refetch] = useUpcomingMeal();
     const axiosSecure = useAxiosSecure();
+    const [isOpen, setIsOpen] = useState(false);
 
     const handlePostMeal = async (mealId) => {
         try {
@@ -21,6 +25,18 @@ const UpcomingMeals = () => {
         }
     };
 
+
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
+    const openModal = () => {    
+        setIsOpen(true);
+    };
+
+
+
     if (loading) return <LoadingSpinner />;
 
     return (
@@ -28,9 +44,11 @@ const UpcomingMeals = () => {
             <div className="p-2 lg:w-[1520px] shadow-2xl rounded sm:p-4 dark:text-gray-800 border-2">
                 <div className="text-center justify-between flex ">
                     <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Upcoming Meals: {upcomingMeal.length}</h2>
-                    <div className='flex'>
-                        <h4 className='text-xl font bold'>Add Upcoming meal</h4>
-                        <button className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#9e4444] to-[#e94051] text-sm">
+                    <div className='flex lg:mr-24 mb-6'>
+                        <h4 className='text-2xl font-bold mr-4'>Upcoming Meal add here:</h4>
+                        <button
+                            onClick={openModal}
+                            className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#9e4444] to-[#e94051] text-lg">
                             Add Meal
                         </button>
                     </div>
@@ -86,6 +104,12 @@ const UpcomingMeals = () => {
                     </table>
                 </div>
             </div>
+
+            <AddUpcomingMeal
+                isOpen={isOpen}
+                closeModal={closeModal}
+                refetch={refetch}            
+            ></AddUpcomingMeal>
         </div>
     );
 };
