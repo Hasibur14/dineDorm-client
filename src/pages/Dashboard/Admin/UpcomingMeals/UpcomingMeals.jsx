@@ -9,7 +9,7 @@ const UpcomingMeals = () => {
 
     return (
         <div>
-            <div className="p-2 lg:w-[1520px] shadow-2xl rounded  sm:p-4 dark:text-gray-800 border">
+            <div className="p-2 lg:w-[1520px] shadow-2xl rounded  sm:p-4 dark:text-gray-800 border-2">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight">Total Upcoming Meals: {upcomingMeal.length}</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-md border">
@@ -65,7 +65,7 @@ const UpcomingMeals = () => {
                     </table>
                 </div>
                 <div className="text-center justify-end flex my-4 mr-10">
-                    <button className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#910404] to-[#DC3545] text-sm">
+                    <button className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded btn from-[#9e4444] to-[#e94051] text-sm">
                         <h4>Add Meal</h4>
                     </button>
                 </div>

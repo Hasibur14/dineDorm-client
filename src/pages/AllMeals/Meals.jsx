@@ -80,11 +80,11 @@ const Meals = () => {
                     </select>
                 </div>
 
-                <div className="font-heading grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+                <div className="font-heading grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10 pb-10">
                     {
                         meals.map(meal => (
                             <div key={meal._id} className="max-w-2xl overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
-                                <img className="object-cover w-full h-64" src={meal.image} alt={meal.title} />
+                                <img className="object-cover p-4 rounded-lg w-full h-64" src={meal.image} alt={meal.title} />
 
                                 <div className="p-6">
                                     <div>
@@ -96,7 +96,7 @@ const Meals = () => {
                                     </div>
 
                                     <div className="mt-4">
-                                        <Link to={`/meal/${meal._id}`} className="flex w-full text-sm py-1 text-center justify-center font-semibold text-white  transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded from-[#910404] to-[#DC3545]">
+                                        <Link to={`/meal/${meal._id}`} className="flex w-full text-sm py-1.5 text-center justify-center font-semibold text-white  transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded from-[#910404] to-[#DC3545]">
                                             <TbDetailsOff className="text-lg mr-2" />
                                             Details
                                         </Link>
