@@ -4,7 +4,7 @@ Dine Dorm is an online platform designed to conveniently meet the daily meal nee
 
 ## <span style="font-size: 1.5em; font-weight: bold;">Visit our Website</span>
 
-[Live Link](https://dine-dorm-a12.web.app)
+Live Link: [Live Link](https://dine-dorm-a12.web.app)
 
 <hr>
 
@@ -13,7 +13,7 @@ Dine Dorm is an online platform designed to conveniently meet the daily meal nee
 ### Concept:
 The core idea of Dine Dorm is to offer a platform where users can browse various meals, access detailed information about their preferred dishes, and upgrade to premium packages that offer additional features and benefits.
 
-### Problem Solved:
+### Features:
 1. **Easy Meal Browsing and Categorization**: Users can easily browse meals categorized into Breakfast, Lunch, Dinner, and All Meals.
 2. **Comprehensive Meal Information**: Users can access detailed information including images, descriptions, ingredients, and reviews for each meal.
 3. **Premium Packages**: Users can upgrade to premium packages to access exclusive features tailored to their preferences.
@@ -30,7 +30,6 @@ The core idea of Dine Dorm is to offer a platform where users can browse various
 
 Tailwind CSS, JavaScript.js, React.js, Node.js, MongoDB, Firebase, JWT and Axios .
 
-<hr>
 
 ---
 
