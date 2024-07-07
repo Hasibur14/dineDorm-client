@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import Container from '../../../components/Container/Container';
@@ -43,28 +43,28 @@ const MealCategory = () => {
                     <Container>
                         <TabPanel>
                             <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10'>
-                                {meal.map(item => (
+                                {meal.slice(0,6).map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='grid grid-cols-1 lg:grid-cols-2  gap-14 lg:gap-10'>
-                                {breakfast.map(item => (
+                                {breakfast.slice(0,6).map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='grid grid-cols-1 lg:grid-cols-2  gap-14 lg:gap-10'>
-                                {lunch.map(item => (
+                                {lunch.slice(0,6).map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
                         </TabPanel>
                         <TabPanel>
                             <div className='grid grid-cols-1 lg:grid-cols-2  gap-14 lg:gap-10'>
-                                {dinner.map(item => (
+                                {dinner.slice(0,6).map(item => (
                                     <MyTabs key={item._id} item={item} />
                                 ))}
                             </div>
@@ -73,6 +73,9 @@ const MealCategory = () => {
                 </Tabs>
             </div>
 
+            <div className="text-center mt-10">
+                <Link to='/meals' className='btn text-white items-center justify-center  transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr  from-[#910404] to-[#DC3545] text-sm px-6'>See More</Link>
+            </div>
         </div>
     );
 };

@@ -4,10 +4,10 @@ import 'react-tabs/style/react-tabs.css';
 
 const MyTabs = ({ item }) => {
     return (
-        <div>
+        <div className='border-2 rounded '>
             <div className="flex h-44 max-w-3xl gap-4 overflow-hidden bg-neutral rounded shadow-lg  dark:bg-gray-800 hover:border border-red-700 ">
                 <div className="relative w-6/12 bg-cover transform transition duration-500 hover:scale-110" style={{ backgroundImage: `url(${item.image})` }}>
-                    <div className="absolute top-0 w-[70px] h-[70px] p-6 flex flex-col items-center justify-center  bg-gradient-to-tr  from-primary to-[#921b42]  ">
+                    <div className="absolute top-0 w-[70px] h-[70px] p-6 flex flex-col items-center justify-center  bg-gradient-to-tr  from-primary to-[#921b42] ">
                         <p className="text-md text-white font-bold">Price</p>
                         <p className="text-xl text-white font-bold">
                             ${item.price}
@@ -33,8 +33,7 @@ const MyTabs = ({ item }) => {
                     </div>
                     <div className=''>
                         <Link to={`/meal/${item._id}`}
-                            className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-lg w-full px-8 py-2 from-[#910404] to-[#DC3545] text-sm">
-                            {/* <BiSolidMessageSquareDetail className='text-xl' /> */}
+                            className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-lg w-full px-8 py-2 from-[#910404] to-[#DC3545] text-xs">
                             Details
                         </Link>
                     </div>

@@ -40,7 +40,7 @@ const HomeBanner = () => {
                             </button>
                         </div>
                         <div>
-                            <Link to="sign-up">
+                            <Link to="/meals">
                                 <button
                                     className="text-base md:text-xl font-semibold bg-gradient-to-tl hover:bg-gradient-to-tr text-white py-3 px-5 rounded-md from-[#121e2d] to-secondary">
                                     Explore Now
