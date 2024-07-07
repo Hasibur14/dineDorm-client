@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { FaLocationDot, FaPhone } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
@@ -6,9 +5,6 @@ import contactBg from "../../assets/contact_Bg_1280.jpg";
 import BannerTitle from "../../components/BannerTitle/BannerTitle";
 
 const ContactUs = () => {
-
-
-
     const [currentTime, setCurrentTime] = useState(new Date());
     const [timeSlots, setTimeSlots] = useState([]);
     const [selectedSlot, setSelectedSlot] = useState("");
@@ -23,8 +19,6 @@ const ContactUs = () => {
         setCurrentTime(new Date());
     }
 
-
-  
     // Generate time slots from startTime to endTime with a specified interval
     const generateTimeSlots = (startTime, endTime, interval) => {
         const slots = [];
@@ -53,33 +47,28 @@ const ContactUs = () => {
         setTimeSlots(slots);
     }, []);
 
-   
-
     return (
         <div>
             <BannerTitle
                 bannerImg={contactBg}
-                subTitle="Get IN Tauch"
-                title="Contact">
-            </BannerTitle>
+                subTitle="Get In Touch"
+                title="Contact Us"
+            ></BannerTitle>
           
-                               
             <section className="bg-white dark:bg-gray-900">
-                <div className="py-8 lg:py-16  md:px-4 md:mx-auto max-w-screen-lg">
-                    <h2 className="mb-4 text-3xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">
-                        Lets<span>`S Start a Conversation</span>
+                <div className="py-8 lg:py-16 md:px-4 md:mx-auto max-w-screen-lg">
+                    <h2 className="mb-4 text-3xl tracking-tight font-bold text-center text-gray-900 dark:text-white">
+                       Contact Dine Dorm 
                     </h2>
                     <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-                        Got a technical issue? Want to send feedback about a beta feature?
-                        Need details about our Business plan? Let us know.
+                    Have a question about our services? Need assistance with a product? Interested in partnering with us? Reach out and we'll be happy to help.
                     </p>
-                    {/* Main div */}
                     <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 md:p-5 rounded-lg text-black">
                         <div>
-                            <form className="space-y-8 ">
+                            <form className="space-y-8">
                                 <div>
                                     <label
-                                        htmlFor="subject"
+                                        htmlFor="name"
                                         className="block mb-2 text-sm font-medium text-black dark:text-gray-300"
                                     >
                                         Your Name
@@ -87,7 +76,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         name="from_name"
-                                        id="subject"
+                                        id="name"
                                         className="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
                                         placeholder="Enter your name"
                                         required
@@ -98,14 +87,14 @@ const ContactUs = () => {
                                         htmlFor="email"
                                         className="block mb-2 text-sm font-medium text-black dark:text-gray-300"
                                     >
-                                        Your email
+                                        Your Email
                                     </label>
                                     <input
                                         type="email"
                                         name="from_email"
                                         id="email"
-                                        className="shadow-sm w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-                                        placeholder="name@example.com"
+                                        className="shadow-sm w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
+                                        placeholder="Enter your email here"
                                         required
                                     />
                                 </div>
@@ -114,7 +103,7 @@ const ContactUs = () => {
                                         htmlFor="message"
                                         className="block mb-2 text-sm font-medium text-black dark:text-gray-400"
                                     >
-                                        Your message
+                                        Your Message
                                     </label>
                                     <textarea
                                         id="message"
@@ -128,34 +117,34 @@ const ContactUs = () => {
                                 <button
                                     type="submit"
                                     value="Send"
-                                    className="py-3 px-5 text-sm font-medium text-center  rounded-lg bg-primary text-white sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
+                                    className="py-3 px-5 text-sm font-medium text-center rounded-lg bg-primary text-white sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 bg-primary-600 hover:bg-primary-700 focus:ring-primary-800"
                                 >
-                                    Send message
+                                    Send Message
                                 </button>
                             </form>
                         </div>
-                        <div className=" p-5 space-y-3">
+                        <div className="p-5 space-y-3">
                             <iframe
-                                className="sm:mb-10 w-full "
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57903.062360049844!2d91.81983580698456!3d24.89998049301974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375054d3d270329f%3A0xf58ef93431f67382!2sSylhet!5e0!3m2!1sen!2sbd!4v1708321918956!5m2!1sen!2sbd"
+                                className="sm:mb-10 w-full"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.9024724415855!2d90.396094314456!3d23.7948829845668!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7b8308f6353%3A0x1c5f71f1c86b6aa0!2sBanani%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1708321918956!5m2!1sen!2sbd"
                                 height="280"
                                 style={{ border: 0 }}
                                 allowFullScreen=""
                                 loading="lazy"
                             ></iframe>
-                            <div className="flex items-center  gap-5">
+                            <div className="flex items-center gap-5">
                                 <FaLocationDot className="w-6 h-6 text-primary" />
                                 <p className="text-xl font-title">
-                                    Level-4, 34, Awal Centre, Dhaka
+                                    Level-6,Model Town Banani, Dhaka
                                 </p>
                             </div>
-                            <div className="flex items-center  gap-5">
+                            <div className="flex items-center gap-5">
                                 <FaPhone className="w-6 h-6 text-primary" />
-                                <p className="text-xl font-title"></p>
+                                <p className="text-xl font-title"> +1 (123) 456-7890</p>
                             </div>
-                            <div className="flex items-center  gap-5">
+                            <div className="flex items-center gap-5">
                                 <MdEmail className="w-6 h-6 text-primary" />
-                                <p className="text-xl font-title"></p>
+                                <p className="text-xl font-title">support@dinedorm.com</p>
                             </div>
                         </div>
                     </div>

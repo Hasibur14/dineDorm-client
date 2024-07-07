@@ -34,7 +34,7 @@ const MyTabs = ({ item }) => {
                     <div className=''>
                         <Link to={`/meal/${item._id}`}
                             className="font-bold text-white uppercase transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr rounded-lg w-full px-8 py-2 from-[#910404] to-[#DC3545] text-xs">
-                            Details
+                            Details 
                         </Link>
                     </div>
                 </div>

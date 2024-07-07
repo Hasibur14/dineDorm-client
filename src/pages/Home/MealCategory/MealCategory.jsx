@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ImArrowRight } from 'react-icons/im';
 import { Link, useParams } from 'react-router-dom';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -74,7 +75,7 @@ const MealCategory = () => {
             </div>
 
             <div className="text-center mt-10">
-                <Link to='/meals' className='btn text-white items-center justify-center  transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr  from-[#910404] to-[#DC3545] text-sm px-6'>See More</Link>
+                <Link to='/meals' className='btn text-white items-center justify-center  transition-colors duration-300 transform bg-gradient-to-tl hover:bg-gradient-to-tr  from-[#910404] to-[#DC3545] text-sm px-6'>See More <ImArrowRight className='animate-pulse' /></Link>
             </div>
         </div>
     );

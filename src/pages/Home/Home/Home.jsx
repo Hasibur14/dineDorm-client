@@ -3,6 +3,7 @@ import Banner from "../../Home/Banner/Banner";
 import MealCategory from "../MealCategory/MealCategory";
 import MemberShip from "../MemberShip/MemberShip";
 import Testimonial from "../Testimonial/Testimonial";
+import WhyChooseUs from "../WhyChooseUs/WhyChooseUs";
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
                 <MealCategory></MealCategory>
                 <MemberShip></MemberShip>
                 <Testimonial></Testimonial>
+                <WhyChooseUs></WhyChooseUs>
             </div>
         </div>
     );

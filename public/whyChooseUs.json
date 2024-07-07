@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "icon": "icon1.png",
+      "title": "Nutritious Meals",
+      "description": "Customized Meal Packages"
+    },
+    {
+      "id": 2,
+      "icon": "icon2.png",
+      "title": "Flexible Options",
+      "description": "Tailored to Your Preferences"
+    },
+    {
+      "id": 3,
+      "icon": "icon3.png",
+      "title": "Easy Ordering",
+      "description": "Simple Meal Selection Process"
+    },
+    {
+      "id": 4,
+      "icon": "icon4.png",
+      "title": "On-Time Delivery",
+      "description": "Timely Meal Service"
+    },
+    {
+      "id": 5,
+      "icon": "icon5.png",
+      "title": "Healthy Choices",
+      "description": "Variety of Nutritious Options"
+    },
+    {
+      "id": 6,
+      "icon": "icon6.png",
+      "title": "Supportive Staff",
+      "description": "Helpful Customer Service"
+    },
+    {
+      "id": 7,
+      "icon": "icon7.png",
+      "title": "Efficient Service",
+      "description": "Streamlined Meal Services"
+    },
+    {
+      "id": 8,
+      "icon": "icon8.png",
+      "title": "Innovative Solutions",
+      "description": "Modern Approaches to Dining"
+    },
+    {
+      "id": 9,
+      "icon": "icon9.png",
+      "title": "Secure Transactions",
+      "description": "Safe and Reliable Payment"
+    }
+  ]
+  
