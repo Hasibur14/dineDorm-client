@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import aboutBg from "../../assets/aboutBg_1280.jpg";
 import BannerTitle from "../../components/BannerTitle/BannerTitle";
+import Container from "../../components/Container/Container";
 
 
 const About = () => {
@@ -12,8 +13,14 @@ const About = () => {
           
          <BannerTitle
          bannerImg={aboutBg}
-         subTitle=""
+         subTitle="Dine Dorm"
          title="About"></BannerTitle>
+
+         <Container>
+            <div className="bg-neutral">
+
+            </div>
+         </Container>
         </div>
     );
 };
